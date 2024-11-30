@@ -11,7 +11,6 @@
 int main()
 {
   std::cout << "Hi from main !" << std::endl;
-  std::cout << "Hi from main !" << std::endl;
   return 0;
 }
 
