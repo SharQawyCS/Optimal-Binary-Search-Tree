@@ -1,14 +1,34 @@
 /**
- * TODO
- * ISA we will make a good documentation to publish this code
- * After finisihing the main task we may add GUI using web techs or simple C++ lib :)
+ * @file main.cpp
+ * @brief Entry point for the Optimal Binary Search Tree (OBST) project.
  *
- * This is a good video to understand: https://www.youtube.com/watch?v=wAy6nDMPYAE&t=18s
- * Read about: Successful and unSuccessful search...
- * Learn: Trees => Binary Search => Binary Trees => Binary Search Trees =>  Optimal Binary Search Trees
+ * @project University Project - Optimal Binary Search Tree (OBST)
+ * @university Ain Shams University - Faculty of Engineering
+ * This project is a practical implementation of the Optimal Binary Search Tree (OBST) algorithm as part of
+ * a university assignment. It is designed to demonstrate key concepts in data structures and algorithms,
+ * focusing on the optimization of binary search tree structures for efficient retrieval operations.
+ *
+ * @features
+ * - Interactive user input for probabilities and keys.
+ * - Implementation of the OBST algorithm using dynamic programming.
+ * - Display of intermediate calculations such as cost, weight, and root tables.
+ * - Modular code with utilities for input handling and matrix operations.
+ *
+ * @future_plans and todos
+ * TODO:
+ * - Enhance the project documentation for possible publication as a learning resource.
+ * - Add a graphical user interface (GUI) to improve usability:
+ *   - Options include modern web technologies (React, Angular, etc.) or lightweight C++ GUI libraries (e.g., Qt, ImGui).
+ * - Separate the logic into `.h` and `.cpp` files for cleaner structure and reusability.
+ * - Explore advanced applications of OBST in real-world scenarios, such as database indexing.
+ *
+ * Concepts to Learn:
+ * - Trees => Binary Search Trees => Optimal Binary Search Trees.
+ * - Successful and Unsuccessful search probabilities in trees.
+ *
+ * References:
+ * - Excellent explanatory video: https://www.youtube.com/watch?v=wAy6nDMPYAE&t=18s
  */
-
-// TODO we may need to separate functions from .h to .cpp
 
 #include <iostream>
 #include "Vector.h"
@@ -17,37 +37,60 @@
 
 using namespace std;
 
-/* ==== Global variables ==== */
-// Data should input by the user
-int n = 4;              // NO. of nodes in the tree
-Vector<float> p(n + 1); // Probability of succesful searches
-Vector<float> q(n + 1); // Probability of un-succesful searches
-Vector<string> lables(n);
+/* ==== Global Variables ==== */
+// Data to be input by the user
+int n = 4;                // Number of nodes in the tree
+Vector<float> p(n + 1);   // Probabilities of successful searches
+Vector<float> q(n + 1);   // Probabilities of unsuccessful searches
+Vector<string> labels(n); // Labels for nodes (keys)
 
-// Arrays to hold data for the app
-int arrSize = n + 2; // Make it a little bit bigger to prevent errors
-Vector<Vector<float>> e = Utils::create2D<float>(arrSize, arrSize);
-Vector<Vector<float>> w = Utils::create2D<float>(arrSize, arrSize);
-Vector<Vector<float>> root = Utils::create2D<float>(arrSize, arrSize);
+// Arrays to hold intermediate calculations for the OBST algorithm
+int arrSize = n + 2;                                                   // Array size is slightly larger to handle edge cases
+Vector<Vector<float>> e = Utils::create2D<float>(arrSize, arrSize);    // Cost table
+Vector<Vector<float>> w = Utils::create2D<float>(arrSize, arrSize);    // Weight table
+Vector<Vector<float>> root = Utils::create2D<float>(arrSize, arrSize); // Root table
 
-// MAIN
+/**
+ * @brief Main function for test the Optimal Binary Search Tree (OBST) application.
+ *
+ * Steps:
+ * 1. Collects input data (probabilities and labels) from the user.
+ * 2. Executes the OBST algorithm to compute:
+ *    - Cost matrix (e): Minimum search costs.
+ *    - Weight matrix (w): Accumulated probabilities.
+ *    - Root matrix (root): Optimal root nodes for subtrees.
+ * 3. Displays results in matrix form for educational analysis.
+ *
+ * @return int Exit code (0 for success).
+ */
 int main()
 {
-  std::cout << "APP STARTED..." << std::endl;
+  std::cout << "==== Optimal Binary Search Tree Application ====" << std::endl;
 
-  // Dammy data //TODO DELETE THIS
-  //  float p[5] = {0, 3 / 16.0, 3 / 16.0, 1 / 16.0, 1 / 16.0};
-  //  float q[5] = {2 / 16.0, 3 / 16.0, 1 / 16.0, 1 / 16.0, 1 / 16.0};
+  // TODO: Remove dummy data after completing the implementation
+  // Example:
+  // float p[5] = {0, 3 / 16.0, 3 / 16.0, 1 / 16.0, 1 / 16.0};
+  // float q[5] = {2 / 16.0, 3 / 16.0, 1 / 16.0, 1 / 16.0, 1 / 16.0};
 
-  Utils::getDataFromUser(lables, n, p, q);
+  // Input data
+  Utils::getDataFromUser(labels, n, p, q);
 
-  OBST::initializeLoop(e, w, root, n, p, q);
-  OBST::computeOBST(e, w, root, n, p, q);
+  // Compute the OBST
+  OBST::initializeLoop(e, w, root, n, p, q); // Initialize tables
+  OBST::computeOBST(e, w, root, n, p, q);    // Compute optimal cost and root structure
 
-  // Printing derived output...
+  // Display results
+  std::cout << "\nDerived Outputs:\n";
+  std::cout << "Cost Table (e):" << std::endl;
   Utils::displayTwoDVec(e);
-  Utils::displayTwoDVec(e);
+
+  std::cout << "Weight Table (w):" << std::endl;
+  Utils::displayTwoDVec(w);
+
+  std::cout << "Root Table:" << std::endl;
   Utils::displayTwoDVec(root);
+
+  std::cout << "==== Execution Complete ====" << std::endl;
 
   return 0;
 }
