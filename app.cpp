@@ -1,4 +1,5 @@
 /**
+ * TODO
  * ISA we will make a good documentation to publish this code
  * After finisihing the main task we may add GUI using web techs or simple C++ lib :)
  *
@@ -11,7 +12,53 @@
 
 using namespace std;
 
-void printRoot(int n, Vector<Vector<int>> root)
+// TODO make util class for static methods
+/* ==== Functions prototypes ==== */
+void getDataFromUser();
+void printRoot();
+void printProbability(); // TODO replace it with a display function in the Vector.h
+void printCost();
+template <typename T>
+Vector<Vector<T>> create2D(size_t rows, size_t cols);
+
+/* ==== Global variables ==== */
+// Data should input by the user
+int n = 4; // NO. of nodes in the tree
+Vector<float> p(n + 1);
+Vector<float> q(n + 1);
+
+// Arrays to hold data for the app
+int arrSize = n + 2; // Make it a little bit bigger to prevent errors
+Vector<Vector<float>> e = create2D<float>(arrSize, arrSize);
+Vector<Vector<float>> w = create2D<float>(arrSize, arrSize);
+Vector<Vector<float>> root = create2D<float>(arrSize, arrSize);
+
+/* ==== Functions implementation ==== */
+void getDataFromUser()
+{
+  cout << "Enter n: ";
+  cin >> n;
+
+  cout << "Enter p: ";
+  p[0] = 0;
+  for (size_t i = 1; i <= n; i++)
+  {
+    float in;
+    cin >> in;
+    p[i] = in;
+  }
+
+  cout << "Enter q: ";
+  for (size_t i = 0; i <= n; i++)
+  {
+    float in;
+    cin >> in;
+    q[i] = in;
+  }
+}
+
+// For printing derived data
+void printRoot()
 {
   cout << "\nRoot\n";
   for (int i = 1; i <= n; i++)
@@ -27,7 +74,7 @@ void printRoot(int n, Vector<Vector<int>> root)
   }
 }
 
-void printProbability(int n, Vector<Vector<int>> w)
+void printProbability()
 {
   cout << "\nW (Probability)\n";
   for (int i = 1; i <= n + 1; i++)
@@ -48,7 +95,7 @@ void printProbability(int n, Vector<Vector<int>> w)
   }
 }
 
-void printCost(int n, Vector<Vector<int>> e)
+void printCost()
 {
   cout << "E (Cost)\n";
   for (int i = 1; i <= n + 1; i++)
@@ -69,7 +116,7 @@ void printCost(int n, Vector<Vector<int>> e)
   }
 }
 
-// A method to create a 2D vector with specified sizes
+// A function to return a 2D Vector with specified sizes
 template <typename T>
 Vector<Vector<T>> create2D(size_t rows, size_t cols)
 {
@@ -81,25 +128,16 @@ Vector<Vector<T>> create2D(size_t rows, size_t cols)
   return result;
 }
 
+// MAIN
 int main()
 {
-  std::cout << "Hi from main!" << std::endl;
+  std::cout << "APP STARTED..." << std::endl;
 
-  // Input data
-  int n = 4;
-  float p[5] = {0, 3 / 16.0, 3 / 16.0, 1 / 16.0, 1 / 16.0};
-  float q[5] = {2 / 16.0, 3 / 16.0, 1 / 16.0, 1 / 16.0, 1 / 16.0};
+  // Dammy data //TODO DELETE THIS
+  //  float p[5] = {0, 3 / 16.0, 3 / 16.0, 1 / 16.0, 1 / 16.0};
+  //  float q[5] = {2 / 16.0, 3 / 16.0, 1 / 16.0, 1 / 16.0, 1 / 16.0};
 
-  // the arrays to hold datas
-  int arrSize = n + 2;
-  Vector<Vector<float>> e = create2D<float>(arrSize, arrSize);
-  Vector<Vector<float>> w = create2D<float>(arrSize, arrSize);
-  Vector<Vector<float>> root = create2D<float>(arrSize, arrSize);
-  // Vector<Vector<float>> tt = create2D<float>(arrSize, arrSize);
-
-  // float e[n + 2][n + 2];
-  // float w[n + 2][n + 2];
-  // float root[n + 2][n + 2];
+  getDataFromUser();
 
   for (int a = 1; a <= n; a++)
   {
@@ -137,54 +175,10 @@ int main()
     }
   }
 
-  cout << "E (Cost)\n";
-  for (int i = 1; i <= n + 1; i++)
-  {
-    for (int j = 0; j <= n; j++)
-    {
-      if (i - j > 1)
-        cout << "----\t\t";
-      else
-      {
-        cout << e[i][j];
-        if (j != n)
-          cout << "0";
-        cout << "\t\t";
-      }
-    }
-    cout << endl;
-  }
-
-  cout << "\nW (Probability)\n";
-  for (int i = 1; i <= n + 1; i++)
-  {
-    for (int j = 0; j <= n; j++)
-    {
-      if (i - j > 1)
-        cout << "----\t\t";
-      else
-      {
-        cout << w[i][j];
-        if (j != n)
-          cout << "0";
-        cout << "\t\t";
-      }
-    }
-    cout << endl;
-  }
-
-  cout << "\nRoot\n";
-  for (int i = 1; i <= n; i++)
-  {
-    for (int j = 1; j <= n; j++)
-    {
-      if (i - j > 0)
-        cout << "-\t\t";
-      else
-        cout << root[i][j] << "\t\t";
-    }
-    cout << endl;
-  }
+  // Printing derived output...
+  printCost();
+  printProbability();
+  printRoot();
 
   return 0;
 }
