@@ -26,7 +26,6 @@ namespace Utils
   template <typename T>
   static void displayTwoDVec(const Vector<Vector<T>> &vec)
   {
-    std::cout << "\nYOUR VEC IS...\n";
     int n = vec.size() - 2;
 
     for (int i = 1; i <= n; i++)

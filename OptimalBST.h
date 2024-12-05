@@ -5,6 +5,8 @@
 
 #include <iostream>
 #include "Vector.h"
+#include "TreeNode.h"
+#include "Tree.h"
 
 namespace OBST
 {
@@ -52,4 +54,30 @@ namespace OBST
       }
     }
   }
+
+  // Take root vector and lables and returns a OBST (A helper functions )
+  TreeNode *buildTreeFromRoot(const Vector<Vector<float>> &root, const Vector<std::string> &labels, int i, int j)
+  {
+    if (i > j || root[i][j] == 0)
+      return nullptr;
+
+    // Find the root of this subtree
+    int r = static_cast<int>(root[i][j]);
+    TreeNode *node = new TreeNode(labels[r - 1]); // Adjusting 1-based indexing to 0-based
+
+    // Recursively build left and right subtrees
+    node->left = buildTreeFromRoot(root, labels, i, r - 1);
+    node->right = buildTreeFromRoot(root, labels, r + 1, j);
+
+    return node;
+  }
+
+  // Wrapper to create the tree object
+  Tree convertToTree(const Vector<Vector<float>> &root, const Vector<std::string> &labels, int n)
+  {
+    Tree tree;
+    tree.setRoot(buildTreeFromRoot(root, labels, 1, n));
+    return tree;
+  }
+
 }

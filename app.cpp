@@ -34,6 +34,7 @@
 #include "Vector.h"
 #include "Utils.h"
 #include "OptimalBST.h"
+#include "Tree.h"
 
 using namespace std;
 
@@ -75,6 +76,12 @@ int main()
   // Input data
   Utils::getDataFromUser(labels, n, p, q);
 
+  // TODO Dummy lables until we update the function to get them
+  labels[0] = "l1";
+  labels[1] = "l2";
+  labels[2] = "l3";
+  labels[3] = "l4";
+
   // Compute the OBST
   OBST::initializeLoop(e, w, root, n, p, q); // Initialize tables
   OBST::computeOBST(e, w, root, n, p, q);    // Compute optimal cost and root structure
@@ -90,7 +97,16 @@ int main()
   std::cout << "Root Table:" << std::endl;
   Utils::displayTwoDVec(root);
 
-  std::cout << "==== Execution Complete ====" << std::endl;
+  Tree myTree = OBST::convertToTree(root, labels, n);
+
+  std::cout << "MY TREE....." << std::endl;
+  myTree.displayTree();
+
+  std::cout << "MY TREE....." << std::endl;
+  myTree.displayHorizontalTree();
+
+  std::cout
+      << "==== Execution Complete ====" << std::endl;
 
   return 0;
 }
