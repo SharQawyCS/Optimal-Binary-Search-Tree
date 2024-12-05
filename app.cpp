@@ -11,13 +11,68 @@
 
 using namespace std;
 
-void printRoot()
+void printRoot(int n, CustomVector<CustomVector<int>> root)
 {
+  cout << "\nRoot\n";
+  for (int i = 1; i <= n; i++)
+  {
+    for (int j = 1; j <= n; j++)
+    {
+      if (i - j > 0)
+        cout << "-\t\t";
+      else
+        cout << root[i][j] << "\t\t";
+    }
+    cout << endl;
+  }
+}
+
+void printProbability(int n, CustomVector<CustomVector<int>> w)
+{
+  cout << "\nW (Probability)\n";
+  for (int i = 1; i <= n + 1; i++)
+  {
+    for (int j = 0; j <= n; j++)
+    {
+      if (i - j > 1)
+        cout << "----\t\t";
+      else
+      {
+        cout << w[i][j];
+        if (j != n)
+          cout << "0";
+        cout << "\t\t";
+      }
+    }
+    cout << endl;
+  }
+}
+
+void printCost(int n, CustomVector<CustomVector<int>> e)
+{
+  cout << "E (Cost)\n";
+  for (int i = 1; i <= n + 1; i++)
+  {
+    for (int j = 0; j <= n; j++)
+    {
+      if (i - j > 1)
+        cout << "----\t\t";
+      else
+      {
+        cout << e[i][j];
+        if (j != n)
+          cout << "0";
+        cout << "\t\t";
+      }
+    }
+    cout << endl;
+  }
 }
 
 int main()
 {
   std::cout << "Hi from main!" << std::endl;
+
   int n = 4;
   float p[5] = {0, 3 / 16.0, 3 / 16.0, 1 / 16.0, 1 / 16.0};
   float q[5] = {2 / 16.0, 3 / 16.0, 1 / 16.0, 1 / 16.0, 1 / 16.0};
