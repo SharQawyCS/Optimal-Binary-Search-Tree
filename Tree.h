@@ -4,6 +4,9 @@
 #include <iomanip>
 #include "TreeNode.h"
 
+#include <fstream>
+#include <stdexcept>
+
 /**
  * @class Tree
  * A class to represent a binary tree and provide utilities like displaying
@@ -86,6 +89,18 @@ public:
   void setRoot(TreeNode *node)
   {
     root = node;
+  }
+
+  /**
+   * @brief Get the root node of the tree.
+   *
+   * This function returns the root node of the tree.
+   *
+   * @return Pointer to the root node.
+   */
+  TreeNode *getRoot() const
+  {
+    return root;
   }
 
   /**
