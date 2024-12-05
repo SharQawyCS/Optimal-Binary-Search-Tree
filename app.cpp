@@ -102,9 +102,6 @@ int main()
   std::cout << "MY TREE....." << std::endl;
   myTree.displayTree();
 
-  std::cout << "MY TREE....." << std::endl;
-  myTree.displayHorizontalTree();
-
   std::cout
       << "==== Execution Complete ====" << std::endl;
 
