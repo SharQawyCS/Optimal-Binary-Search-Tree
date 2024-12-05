@@ -3,6 +3,8 @@
  */
 
 #pragma once
+
+#include <iostream>
 #include "Vector.h"
 
 // TODO: A function to get the input from the user (cin not enough becuase we need better data validation )
