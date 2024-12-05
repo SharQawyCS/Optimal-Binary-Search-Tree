@@ -56,8 +56,7 @@ int main()
   std::cout << "MY TREE:" << std::endl;
   tree.displayTree();
 
-  // Completion message to indicate successful execution.
   std::cout << "==== Execution Complete ====" << std::endl;
 
-  return 0; // Exit code 0 indicates success.
+  return 0;
 }
