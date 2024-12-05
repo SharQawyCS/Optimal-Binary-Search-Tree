@@ -33,7 +33,7 @@
 #include <iostream>
 #include "Vector.h"
 #include "Utils.h"
-#include "OptimalBST.h"
+#include "OBST.h"
 #include "Tree.h"
 
 using namespace std;
@@ -56,7 +56,7 @@ int main()
   std::cout << "==== Optimal Binary Search Tree Application ====" << std::endl;
 
   // Data to be input by the user
-  int n = 7;                                                          // Number of nodes in the tree
+  int n = 7;                                                          // Number of nodes in the tree (We do not use it anymore)
   Vector<float> p = {0, 0.15, 0.10, 0.05, 0.10, 0.20, 0.10, 0.20};    // Probabilities of successful searches
   Vector<float> q = {0.05, 0.10, 0.05, 0.05, 0.05, 0.10, 0.05, 0.15}; // Probabilities of unsuccessful searches
 
@@ -70,31 +70,11 @@ int main()
       "g",
   }; // Labels for nodes (keys)
 
-  // Arrays to hold intermediate calculations for the OBST algorithm
-  int arrSize = n + 2;                                                   // Array size is slightly larger to handle edge cases
-  Vector<Vector<float>> e = Utils::create2D<float>(arrSize, arrSize);    // Cost table
-  Vector<Vector<float>> w = Utils::create2D<float>(arrSize, arrSize);    // Weight table
-  Vector<Vector<float>> root = Utils::create2D<float>(arrSize, arrSize); // Root table
+  // Generate the Optimal Binary Search Tree (OBST)
+  Tree tree = OBST::generateTheOBST(p, q, labels, true);
 
-  // Compute the OBST
-  OBST::initializeLoop(e, w, root, n, p, q); // Initialize tables
-  OBST::computeOBST(e, w, root, n, p, q);    // Compute optimal cost and root structure
-
-  // Display results
-  std::cout << "\nDerived Outputs:\n";
-  std::cout << "Cost Table (e):" << std::endl;
-  Utils::displayTwoDVec(e);
-
-  std::cout << "Weight Table (w):" << std::endl;
-  Utils::displayTwoDVec(w);
-
-  std::cout << "Root Table:" << std::endl;
-  Utils::displayTwoDVec(root);
-
-  Tree myTree = OBST::convertToTree(root, labels, n);
-
-  std::cout << "MY TREE....." << std::endl;
-  myTree.displayTree();
+  std::cout << "MY TREE:" << std::endl;
+  tree.displayTree();
 
   std::cout
       << "==== Execution Complete ====" << std::endl;

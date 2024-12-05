@@ -53,7 +53,6 @@ public:
   // Display tree in sideways format
   void displayTree() const
   {
-    std::cout << "\nSideways Tree View:\n";
     displayTreeHelper(root);
   }
 };

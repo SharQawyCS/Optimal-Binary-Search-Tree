@@ -7,12 +7,14 @@
 #include "Vector.h"
 #include "TreeNode.h"
 #include "Tree.h"
+#include "Utils.h"
 
-namespace OBST
+class OBST
 {
+private:
   // To set up the base cases for e, w, root
-  void initializeLoop(Vector<Vector<float>> &E, Vector<Vector<float>> &W, Vector<Vector<float>> &Root,
-                      const int &N, const Vector<float> &P, const Vector<float> &Q)
+  void static initializeLoop(Vector<Vector<float>> &E, Vector<Vector<float>> &W, Vector<Vector<float>> &Root,
+                             const int &N, const Vector<float> &P, const Vector<float> &Q)
   {
     for (int a = 1; a <= N; a++)
     {
@@ -28,8 +30,8 @@ namespace OBST
   }
 
   // To run the main dynamic programming algorithm
-  void computeOBST(Vector<Vector<float>> &E, Vector<Vector<float>> &W, Vector<Vector<float>> &Root,
-                   const int &N, const Vector<float> &P, const Vector<float> &Q)
+  void static computeOBST(Vector<Vector<float>> &E, Vector<Vector<float>> &W, Vector<Vector<float>> &Root,
+                          const int &N, const Vector<float> &P, const Vector<float> &Q)
   {
     for (int l = 2; l <= N; l++)
     {
@@ -56,7 +58,7 @@ namespace OBST
   }
 
   // Take root vector and lables and returns a OBST (A helper functions )
-  TreeNode *buildTreeFromRoot(const Vector<Vector<float>> &root, const Vector<std::string> &labels, int i, int j)
+  TreeNode static *buildTreeFromRoot(const Vector<Vector<float>> &root, const Vector<std::string> &labels, int i, int j)
   {
     if (i > j || root[i][j] == 0)
       return nullptr;
@@ -73,11 +75,41 @@ namespace OBST
   }
 
   // Wrapper to create the tree object
-  Tree convertToTree(const Vector<Vector<float>> &root, const Vector<std::string> &labels, int n)
+  Tree static convertToTree(const Vector<Vector<float>> &root, const Vector<std::string> &labels, int n)
   {
     Tree tree;
     tree.setRoot(buildTreeFromRoot(root, labels, 1, n));
     return tree;
   }
 
-}
+public:
+  Tree static generateTheOBST(const Vector<float> &p, const Vector<float> &q, const Vector<std::string> &labels, bool displayTables = false)
+  {
+    // Initialize the tables
+    int n = p.size() - 1;
+    Vector<Vector<float>> e = Utils::create2D<float>(n + 2, n + 2);
+    Vector<Vector<float>> w = Utils::create2D<float>(n + 2, n + 2);
+    Vector<Vector<float>> root = Utils::create2D<float>(n + 2, n + 2);
+
+    initializeLoop(e, w, root, n, p, q);
+    computeOBST(e, w, root, n, p, q);
+
+    if (displayTables)
+    {
+      std::cout << "\n====== Derived Outputs ======\n";
+      std::cout << "Cost Table (e):" << "\n";
+      Utils::displayTwoDVec(e);
+      std::cout << std::endl;
+
+      std::cout << "Weight Table (w):" << "\n";
+      Utils::displayTwoDVec(w);
+      std::cout << std::endl;
+
+      std::cout << "Root Table:" << "\n";
+      Utils::displayTwoDVec(root);
+      std::cout << std::endl;
+    }
+
+    return convertToTree(root, labels, n);
+  }
+};
