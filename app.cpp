@@ -7,11 +7,11 @@
  * Learn: Trees => Binary Search => Binary Trees => Binary Search Trees =>  Optimal Binary Search Trees
  */
 #include <iostream>
-#include "CustomVector.h"
+#include "Vector.h"
 
 using namespace std;
 
-void printRoot(int n, CustomVector<CustomVector<int>> root)
+void printRoot(int n, Vector<Vector<int>> root)
 {
   cout << "\nRoot\n";
   for (int i = 1; i <= n; i++)
@@ -27,7 +27,7 @@ void printRoot(int n, CustomVector<CustomVector<int>> root)
   }
 }
 
-void printProbability(int n, CustomVector<CustomVector<int>> w)
+void printProbability(int n, Vector<Vector<int>> w)
 {
   cout << "\nW (Probability)\n";
   for (int i = 1; i <= n + 1; i++)
@@ -48,7 +48,7 @@ void printProbability(int n, CustomVector<CustomVector<int>> w)
   }
 }
 
-void printCost(int n, CustomVector<CustomVector<int>> e)
+void printCost(int n, Vector<Vector<int>> e)
 {
   cout << "E (Cost)\n";
   for (int i = 1; i <= n + 1; i++)
@@ -69,17 +69,37 @@ void printCost(int n, CustomVector<CustomVector<int>> e)
   }
 }
 
+// A method to create a 2D vector with specified sizes
+template <typename T>
+Vector<Vector<T>> create2D(size_t rows, size_t cols)
+{
+  Vector<Vector<T>> result(rows);
+  for (size_t i = 0; i < rows; ++i)
+  {
+    result[i].resize(cols);
+  }
+  return result;
+}
+
 int main()
 {
   std::cout << "Hi from main!" << std::endl;
 
+  // Input data
   int n = 4;
   float p[5] = {0, 3 / 16.0, 3 / 16.0, 1 / 16.0, 1 / 16.0};
   float q[5] = {2 / 16.0, 3 / 16.0, 1 / 16.0, 1 / 16.0, 1 / 16.0};
 
-  float e[n + 2][n + 2];
-  float w[n + 2][n + 2];
-  float root[n + 2][n + 2];
+  // the arrays to hold datas
+  int arrSize = n + 2;
+  Vector<Vector<float>> e = create2D<float>(arrSize, arrSize);
+  Vector<Vector<float>> w = create2D<float>(arrSize, arrSize);
+  Vector<Vector<float>> root = create2D<float>(arrSize, arrSize);
+  // Vector<Vector<float>> tt = create2D<float>(arrSize, arrSize);
+
+  // float e[n + 2][n + 2];
+  // float w[n + 2][n + 2];
+  // float root[n + 2][n + 2];
 
   for (int a = 1; a <= n; a++)
   {
