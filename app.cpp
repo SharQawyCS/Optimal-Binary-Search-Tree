@@ -38,19 +38,6 @@
 
 using namespace std;
 
-/* ==== Global Variables ==== */
-// Data to be input by the user
-int n = 4;                // Number of nodes in the tree
-Vector<float> p(n + 1);   // Probabilities of successful searches
-Vector<float> q(n + 1);   // Probabilities of unsuccessful searches
-Vector<string> labels(n); // Labels for nodes (keys)
-
-// Arrays to hold intermediate calculations for the OBST algorithm
-int arrSize = n + 2;                                                   // Array size is slightly larger to handle edge cases
-Vector<Vector<float>> e = Utils::create2D<float>(arrSize, arrSize);    // Cost table
-Vector<Vector<float>> w = Utils::create2D<float>(arrSize, arrSize);    // Weight table
-Vector<Vector<float>> root = Utils::create2D<float>(arrSize, arrSize); // Root table
-
 /**
  * @brief Main function for test the Optimal Binary Search Tree (OBST) application.
  *
@@ -68,19 +55,26 @@ int main()
 {
   std::cout << "==== Optimal Binary Search Tree Application ====" << std::endl;
 
-  // TODO: Remove dummy data after completing the implementation
-  // Example:
-  // float p[5] = {0, 3 / 16.0, 3 / 16.0, 1 / 16.0, 1 / 16.0};
-  // float q[5] = {2 / 16.0, 3 / 16.0, 1 / 16.0, 1 / 16.0, 1 / 16.0};
+  // Data to be input by the user
+  int n = 7;                                                          // Number of nodes in the tree
+  Vector<float> p = {0, 0.15, 0.10, 0.05, 0.10, 0.20, 0.10, 0.20};    // Probabilities of successful searches
+  Vector<float> q = {0.05, 0.10, 0.05, 0.05, 0.05, 0.10, 0.05, 0.15}; // Probabilities of unsuccessful searches
 
-  // Input data
-  Utils::getDataFromUser(labels, n, p, q);
+  Vector<string> labels = {
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f",
+      "g",
+  }; // Labels for nodes (keys)
 
-  // TODO Dummy lables until we update the function to get them
-  labels[0] = "l1";
-  labels[1] = "l2";
-  labels[2] = "l3";
-  labels[3] = "l4";
+  // Arrays to hold intermediate calculations for the OBST algorithm
+  int arrSize = n + 2;                                                   // Array size is slightly larger to handle edge cases
+  Vector<Vector<float>> e = Utils::create2D<float>(arrSize, arrSize);    // Cost table
+  Vector<Vector<float>> w = Utils::create2D<float>(arrSize, arrSize);    // Weight table
+  Vector<Vector<float>> root = Utils::create2D<float>(arrSize, arrSize); // Root table
 
   // Compute the OBST
   OBST::initializeLoop(e, w, root, n, p, q); // Initialize tables

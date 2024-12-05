@@ -5,6 +5,8 @@
 #pragma once
 
 #include <iostream>
+#include <cstdio>
+#include <string>
 #include "Vector.h"
 
 // TODO: A function to get the input from the user (cin not enough becuase we need better data validation )
@@ -41,32 +43,66 @@ namespace Utils
     }
   }
 
-  template <typename T>
-  void getDataFromUser(Vector<T> &DataLables, int &N, Vector<float> &P, Vector<float> &Q)
-  {
-    // TODO: Get lables code should be here..
-
-    // Getting number of nodes...
-    std::cout << "Enter n: ";
-    std::cin >> N;
-
-    // Getting probability of successful search (p)...
-    std::cout << "Enter p: ";
-    P[0] = 0;
-    for (size_t i = 1; i <= N; i++)
+  // TODO: these two functions need to be impelemented and tested well
+  /*
+    void getDataFromUser(Vector<std::string> &DataLables, int &N, Vector<float> &P, Vector<float> &Q)
     {
-      float in;
-      std::cin >> in;
-      P[i] = in;
+      // Getting number of nodes...
+      std::cout << "Enter n: ";
+      scanf("%d", &N); // std::cin >> N;
+
+      // Getting probability of successful search (p)...
+      P = Vector<float>(N + 1);
+      std::cout << "Enter p: ";
+      P[0] = 0;
+      for (size_t i = 1; i <= N; i++)
+      {
+        float in;
+        scanf("%f", &in); // std::cin >> in;
+        P[i] = in;
+      }
+
+      // Getting probability of un-successful search (q)...
+      Q = Vector<float>(N + 1);
+      std::cout << "Enter q: ";
+      for (size_t i = 0; i <= N; i++)
+      {
+        float in;
+        scanf("%f", &in); // std::cin >> in;
+        Q[i] = in;
+      }
+
+      // TODO: Get lables code should be here..
+      DataLables = Vector<std::string>(N);
+
+      for (int i = 0; i < N; i++)
+      {
+        DataLables[i] = "Node " + std::to_string(i + 1);
+      }
+
+      // std::cout << "Enter lables: ";
+      // // get lables with spaces and without std::cin >>
+      // std::cin.ignore();
+      // for (size_t i = 0; i < N; i++)
+      // {
+      //   std::string in;
+      //   // getline(std::cin, in);
+      //   std::cin >> in;
+      //   DataLables[i] = in;
+      // }
     }
 
-    // Getting probability of un-successful search (q)...
-    std::cout << "Enter q: ";
-    for (size_t i = 0; i <= N; i++)
+    void getStaticData(Vector<std::string> &DataLables, int &N, Vector<float> &P, Vector<float> &Q)
     {
-      float in;
-      std::cin >> in;
-      Q[i] = in;
+      N = 4;
+      P = Vector<float>({0, 0.15, 0.10, 0.05, 0.10});
+      Q = Vector<float>({0.05, 0.10, 0.05, 0.05, 0.05});
+      DataLables = Vector<std::string>(N);
+
+      for (int i = 0; i < N; i++)
+      {
+        DataLables[i] = "Node " + std::to_string(i + 1);
+      }
     }
-  }
+    */
 }

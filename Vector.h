@@ -14,6 +14,16 @@ public:
   Vector(size_t initial_size = 0)
       : cap(initial_size), len(initial_size), data(initial_size ? new T[initial_size] : nullptr) {}
 
+  Vector(std::initializer_list<T> list)
+      : cap(list.size()), len(list.size()), data(new T[list.size()])
+  {
+    size_t i = 0;
+    for (const T &elem : list)
+    {
+      data[i++] = elem;
+    }
+  }
+
   ~Vector()
   {
     delete[] data;
@@ -60,5 +70,13 @@ public:
   size_t size() const
   {
     return len;
+  }
+
+  void display()
+  {
+    for (int i = 0; i < len; ++i)
+      std::cout << data[i] << " ";
+
+    std::cout << std::endl;
   }
 };
