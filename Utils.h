@@ -64,53 +64,55 @@ namespace Utils
     }
   }
 
-  // TODO: these two functions need to be implemented and tested well
-
   void getDataFromUser(Vector<std::string> &DataLables, int &N, Vector<float> &P, Vector<float> &Q)
   {
     // Getting number of nodes...
-    std::cout << "Enter n: ";
-    scanf("%d", &N); // std::cin >> N;
+    std::cout << "Enter number of nodes: ";
+    std::cin >> N;
+    std::cin.ignore();
+
+    DataLables = Vector<std::string>(N);
+    std::cout << "Entering data labels....\n";
+    for (size_t i = 0; i < N; i++)
+    {
+      std::string in;
+      std::cout << "Enter label " << i + 1 << ": ";
+      std::cin >> in;
+      std::cin.ignore();
+      DataLables[i] = in;
+    }
 
     // Getting probability of successful search (p)...
     P = Vector<float>(N + 1);
-    std::cout << "Enter p: ";
+    std::cout << "Entering probability of successful search....\n";
     P[0] = 0;
     for (size_t i = 1; i <= N; i++)
     {
       float in;
-      scanf("%f", &in); // std::cin >> in;
+      std::cout << "Enter p[" << i << "]: ";
+      std::cin >> in;
+      std::cin.ignore();
       P[i] = in;
     }
 
     // Getting probability of un-successful search (q)...
     Q = Vector<float>(N + 1);
-    std::cout << "Enter q: ";
+    std::cout << "Entering probability of un-successful search....\n";
     for (size_t i = 0; i <= N; i++)
     {
       float in;
-      scanf("%f", &in); // std::cin >> in;
-      Q[i] = in;
-    }
-
-    // TODO: Get labels code should be here..
-    DataLables = Vector<std::string>(N);
-
-    // for (int i = 0; i < N; i++)
-    // {
-    //   DataLables[i] = "Node " + std::to_string(i + 1);
-    // }
-
-    std::cout << "Enter labels: ";
-    // Get labels with spaces and without std::cin >>
-    std::cin.ignore();
-    for (size_t i = 0; i < N; i++)
-    {
-      std::string in;
-      // getline(std::cin, in);
+      std::cout << "Enter q[" << i << "]: ";
       std::cin >> in;
-      DataLables[i] = in;
+      std::cin.ignore();
+      Q[i] = in;
     }
   }
 
+  template <typename T>
+  void swapTwo(T &a, T &b)
+  {
+    T temp = a;
+    a = b;
+    b = temp;
+  }
 }

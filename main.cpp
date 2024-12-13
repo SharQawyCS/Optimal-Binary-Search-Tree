@@ -47,37 +47,33 @@ int main()
   std::cout << "==== Optimal Binary Search Tree Application ====" << std::endl;
 
   // **INPUT DATA SETUP**
-  // // Data to be input by the user (hardcoded for simplicity in this implementation).
+  int n;                      // Number of nodes in the tree.
+  Vector<float> p;            // Probabilities of successful searches. size = n+1
+  Vector<float> q;            // Probabilities of unsuccessful searches. size = n+1
+  Vector<std::string> labels; // Labels for nodes (keys). These represent the values associated with the nodes in the OBST. size = n
 
-  // int n;           // Number of nodes in the tree.
-  // Vector<float> p; // Probabilities of successful searches. size = n+1
-  // Vector<float> q; // Probabilities of unsuccessful searches. size = n+1
-
-  // // Labels for nodes (keys). These represent the values associated with the nodes in the OBST. size = n
-  // Vector<std::string> labels;
-
-  // Utils::getDataFromUser(labels, n, p, q);
-  // p.display();
-  // q.display();
-  // std::cout << n << std::endl;
-  // labels.display();
+  Utils::getDataFromUser(labels, n, p, q);
+  labels.display(" - ");
+  p.display();
+  q.display();
+  std::cout << n << std::endl;
 
   // ? Test case 1
-  int n = 30;
-  Vector<float> p = {
-      0.0, 0.10, 0.15, 0.10, 0.05, 0.20, 0.15, 0.05,
-      0.10, 0.25, 0.20, 0.05, 0.30, 0.10, 0.15, 0.05,
-      0.25, 0.10, 0.20, 0.15, 0.30, 0.05, 0.20, 0.10,
-      0.25, 0.15, 0.10, 0.05, 0.15, 0.10, 0.20};
-  Vector<float> q = {
-      0.05, 0.10, 0.15, 0.05, 0.10, 0.05, 0.20, 0.15,
-      0.05, 0.10, 0.05, 0.15, 0.10, 0.20, 0.05, 0.15,
-      0.05, 0.10, 0.15, 0.05, 0.30, 0.10, 0.20, 0.05,
-      0.10, 0.15, 0.20, 0.10, 0.05, 0.15, 0.10};
-  Vector<std::string> labels = {
-      "a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
-      "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
-      "u", "v", "w", "x", "y", "z", "aa", "ab", "ac", "ad"};
+  // int n = 30;
+  // Vector<float> p = {
+  //     0.0, 0.10, 0.15, 0.10, 0.05, 0.20, 0.15, 0.05,
+  //     0.10, 0.25, 0.20, 0.05, 0.30, 0.10, 0.15, 0.05,
+  //     0.25, 0.10, 0.20, 0.15, 0.30, 0.05, 0.20, 0.10,
+  //     0.25, 0.15, 0.10, 0.05, 0.15, 0.10, 0.20};
+  // Vector<float> q = {
+  //     0.05, 0.10, 0.15, 0.05, 0.10, 0.05, 0.20, 0.15,
+  //     0.05, 0.10, 0.05, 0.15, 0.10, 0.20, 0.05, 0.15,
+  //     0.05, 0.10, 0.15, 0.05, 0.30, 0.10, 0.20, 0.05,
+  //     0.10, 0.15, 0.20, 0.10, 0.05, 0.15, 0.10};
+  // Vector<std::string> labels = {
+  //     "a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
+  //     "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
+  //     "u", "v", "w", "x", "y", "z", "aa", "ab", "ac", "ad"};
 
   // ? Test case 2
   // int n = 4;
