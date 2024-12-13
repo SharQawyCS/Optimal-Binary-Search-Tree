@@ -53,7 +53,6 @@ public:
   {
     if (len)
     {
-      std::cout << "HI FROM VECTOR DESTRUCTOR.. " << len << " <- ";
       len = 0;
       delete[] data;
     }

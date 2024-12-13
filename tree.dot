@@ -1,19 +1,3 @@
 digraph OBST {
   node [shape=circle];
-  "&&" -> "cd";
-  null0 [shape=point];
-  "cd" -> null0;
-  "cd" -> ""/Users/sharqawycs/Desktop/solve-sheets/DSs/project/"";
-  null1 [shape=point];
-  ""/Users/sharqawycs/Desktop/solve-sheets/DSs/project/"" -> null1;
-  null2 [shape=point];
-  ""/Users/sharqawycs/Desktop/solve-sheets/DSs/project/"" -> null2;
-  "&&" -> "g++";
-  null3 [shape=point];
-  "g++" -> null3;
-  "g++" -> "-std=c++17";
-  null4 [shape=point];
-  "-std=c++17" -> null4;
-  null5 [shape=point];
-  "-std=c++17" -> null5;
 }

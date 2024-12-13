@@ -10,7 +10,6 @@
 #include <string>
 #include "Vector.h"
 
-// TODO: A function to get the input from the user (cin not enough because we need better data validation)
 namespace Utils
 {
   /**
@@ -71,7 +70,8 @@ namespace Utils
     std::cin >> N;
     std::cin.ignore();
 
-    DataLables = Vector<std::string>(N);
+    // DataLables = Vector<std::string>(N);
+    DataLables.resize(N);
     std::cout << "Entering data labels....\n";
     for (size_t i = 0; i < N; i++)
     {
@@ -83,7 +83,8 @@ namespace Utils
     }
 
     // Getting probability of successful search (p)...
-    P = Vector<float>(N + 1);
+    // P = Vector<float>(N + 1);
+    P.resize(N + 1);
     std::cout << "Entering probability of successful search....\n";
     P[0] = 0;
     for (size_t i = 1; i <= N; i++)
@@ -96,7 +97,8 @@ namespace Utils
     }
 
     // Getting probability of un-successful search (q)...
-    Q = Vector<float>(N + 1);
+    // Q = Vector<float>(N + 1);
+    Q.resize(N + 1);
     std::cout << "Entering probability of un-successful search....\n";
     for (size_t i = 0; i <= N; i++)
     {

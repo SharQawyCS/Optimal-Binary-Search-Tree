@@ -47,15 +47,15 @@ int main()
   std::cout << "==== Optimal Binary Search Tree Application ====" << std::endl;
 
   // **INPUT DATA SETUP**
-  int n;                      // Number of nodes in the tree.
-  Vector<float> p;            // Probabilities of successful searches. size = n+1
-  Vector<float> q;            // Probabilities of unsuccessful searches. size = n+1
-  Vector<std::string> labels; // Labels for nodes (keys). These represent the values associated with the nodes in the OBST. size = n
+  int n;                         // Number of nodes in the tree.
+  Vector<float> p(0);            // Probabilities of successful searches. size = n+1
+  Vector<float> q(0);            // Probabilities of unsuccessful searches. size = n+1
+  Vector<std::string> labels(0); // Labels for nodes (keys). These represent the values associated with the nodes in the OBST. size = n
 
   Utils::getDataFromUser(labels, n, p, q);
-  labels.display(" - ");
-  p.display();
-  q.display();
+  // labels.display(" - ");
+  // p.display();
+  // q.display();
   std::cout << n << std::endl;
 
   // ? Test case 1
