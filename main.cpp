@@ -53,9 +53,9 @@ int main()
   Vector<std::string> labels(0); // Labels for nodes (keys). These represent the values associated with the nodes in the OBST. size = n
 
   Utils::getDataFromUser(labels, n, p, q);
-  // labels.display(" - ");
-  // p.display();
-  // q.display();
+  labels.display(", ");
+  p.display();
+  q.display();
   std::cout << n << std::endl;
 
   // ? Test case 1

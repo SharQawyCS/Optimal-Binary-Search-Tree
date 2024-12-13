@@ -63,13 +63,66 @@ namespace Utils
     }
   }
 
+  int readIntInput(std::string msg = "Enter a valid integer: ")
+  { // Source: https://stackoverflow.com/questions/16934183/integer-validation-for-input
+    int input = -1;
+    bool valid = false;
+    do
+    {
+      std::cout << msg << std::flush;
+      std::cin >> input;
+      if (std::cin.good())
+      {
+        // everything went well, we'll get out of the loop and return the value
+        valid = true;
+      }
+      else
+      {
+        // something went wrong, we reset the buffer's state to good
+        std::cin.clear();
+        // and empty it
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Invalid input; please re-enter." << std::endl;
+      }
+    } while (!valid);
+
+    return (input);
+  }
+
+  float readFloatInput(std::string msg = "Enter a valid float number: ")
+  {
+    float input = -1;
+    bool valid = false;
+    do
+    {
+      std::cout << msg << std::flush;
+      std::cin >> input;
+      if (std::cin.good())
+      {
+        // everything went well, we'll get out of the loop and return the value
+        valid = true;
+      }
+      else
+      {
+        // something went wrong, we reset the buffer's state to good
+        std::cin.clear();
+        // and empty it
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Invalid input; please re-enter." << std::endl;
+      }
+    } while (!valid);
+
+    return (input);
+  }
+
   void getDataFromUser(Vector<std::string> &DataLables, int &N, Vector<float> &P, Vector<float> &Q)
   {
     // Getting number of nodes...
-    std::cout << "Enter number of nodes: ";
-    std::cin >> N;
+    // std::cin >> N;
+    N = readIntInput("Enter number of nodes: ");
     std::cin.ignore();
 
+    // Getting data labels...
     // DataLables = Vector<std::string>(N);
     DataLables.resize(N);
     std::cout << "Entering data labels....\n";
@@ -89,11 +142,8 @@ namespace Utils
     P[0] = 0;
     for (size_t i = 1; i <= N; i++)
     {
-      float in;
-      std::cout << "Enter p[" << i << "]: ";
-      std::cin >> in;
-      std::cin.ignore();
-      P[i] = in;
+      std::string msg = "Enter p[" + std::to_string(i) + "]: ";
+      P[i] = readFloatInput(msg);
     }
 
     // Getting probability of un-successful search (q)...
@@ -102,11 +152,8 @@ namespace Utils
     std::cout << "Entering probability of un-successful search....\n";
     for (size_t i = 0; i <= N; i++)
     {
-      float in;
-      std::cout << "Enter q[" << i << "]: ";
-      std::cin >> in;
-      std::cin.ignore();
-      Q[i] = in;
+      std::string msg = "Enter q[" + std::to_string(i) + "]: ";
+      Q[i] = readFloatInput(msg);
     }
   }
 
