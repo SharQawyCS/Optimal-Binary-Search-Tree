@@ -46,7 +46,7 @@ namespace Utils
   template <typename T>
   static void displayTwoDVec(const Vector<Vector<T>> &vec)
   {
-    int n = vec.size() - 2; // Assuming 2 extra rows/columns for padding or special use
+    int n = vec.size() - 1;
 
     // Loop through rows
     for (int i = 1; i <= n; i++)
@@ -65,65 +65,52 @@ namespace Utils
   }
 
   // TODO: these two functions need to be implemented and tested well
-  /*
-    void getDataFromUser(Vector<std::string> &DataLables, int &N, Vector<float> &P, Vector<float> &Q)
+
+  void getDataFromUser(Vector<std::string> &DataLables, int &N, Vector<float> &P, Vector<float> &Q)
+  {
+    // Getting number of nodes...
+    std::cout << "Enter n: ";
+    scanf("%d", &N); // std::cin >> N;
+
+    // Getting probability of successful search (p)...
+    P = Vector<float>(N + 1);
+    std::cout << "Enter p: ";
+    P[0] = 0;
+    for (size_t i = 1; i <= N; i++)
     {
-      // Getting number of nodes...
-      std::cout << "Enter n: ";
-      scanf("%d", &N); // std::cin >> N;
-
-      // Getting probability of successful search (p)...
-      P = Vector<float>(N + 1);
-      std::cout << "Enter p: ";
-      P[0] = 0;
-      for (size_t i = 1; i <= N; i++)
-      {
-        float in;
-        scanf("%f", &in); // std::cin >> in;
-        P[i] = in;
-      }
-
-      // Getting probability of un-successful search (q)...
-      Q = Vector<float>(N + 1);
-      std::cout << "Enter q: ";
-      for (size_t i = 0; i <= N; i++)
-      {
-        float in;
-        scanf("%f", &in); // std::cin >> in;
-        Q[i] = in;
-      }
-
-      // TODO: Get labels code should be here..
-      DataLables = Vector<std::string>(N);
-
-      for (int i = 0; i < N; i++)
-      {
-        DataLables[i] = "Node " + std::to_string(i + 1);
-      }
-
-      // std::cout << "Enter labels: ";
-      // // Get labels with spaces and without std::cin >>
-      // std::cin.ignore();
-      // for (size_t i = 0; i < N; i++)
-      // {
-      //   std::string in;
-      //   // getline(std::cin, in);
-      //   std::cin >> in;
-      //   DataLables[i] = in;
-      // }
+      float in;
+      scanf("%f", &in); // std::cin >> in;
+      P[i] = in;
     }
 
-    void getStaticData(Vector<std::string> &DataLables, int &N, Vector<float> &P, Vector<float> &Q)
+    // Getting probability of un-successful search (q)...
+    Q = Vector<float>(N + 1);
+    std::cout << "Enter q: ";
+    for (size_t i = 0; i <= N; i++)
     {
-      N = 4;
-      P = Vector<float>({0, 0.15, 0.10, 0.05, 0.10});
-      Q = Vector<float>({0.05, 0.10, 0.05, 0.05, 0.05});
-      DataLables = Vector<std::string>(N);
-
-      for (int i = 0; i < N; i++)
-      {
-        DataLables[i] = "Node " + std::to_string(i + 1);
-      }
+      float in;
+      scanf("%f", &in); // std::cin >> in;
+      Q[i] = in;
     }
-  */
+
+    // TODO: Get labels code should be here..
+    DataLables = Vector<std::string>(N);
+
+    // for (int i = 0; i < N; i++)
+    // {
+    //   DataLables[i] = "Node " + std::to_string(i + 1);
+    // }
+
+    std::cout << "Enter labels: ";
+    // Get labels with spaces and without std::cin >>
+    std::cin.ignore();
+    for (size_t i = 0; i < N; i++)
+    {
+      std::string in;
+      // getline(std::cin, in);
+      std::cin >> in;
+      DataLables[i] = in;
+    }
+  }
+
 }

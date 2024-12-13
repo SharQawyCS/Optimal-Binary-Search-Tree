@@ -10,9 +10,9 @@
 class TreeNode
 {
 public:
-  std::string key; ///< The value or label of the node.
-  TreeNode *left;  ///< Pointer to the left child node.
-  TreeNode *right; ///< Pointer to the right child node.
+  std::string key; // The value or label of the node.
+  TreeNode *left;  // Pointer to the left child node.
+  TreeNode *right; // Pointer to the right child node.
 
   /**
    * @brief Constructor for the TreeNode class.

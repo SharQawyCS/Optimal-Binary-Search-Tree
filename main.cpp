@@ -47,39 +47,37 @@ int main()
   std::cout << "==== Optimal Binary Search Tree Application ====" << std::endl;
 
   // **INPUT DATA SETUP**
-  // Data to be input by the user (hardcoded for simplicity in this implementation).
+  // // Data to be input by the user (hardcoded for simplicity in this implementation).
 
-  // int n = 7;                                                          // Number of nodes in the tree.
-  // Vector<float> p = {0, 0.15, 0.10, 0.05, 0.10, 0.20, 0.10, 0.20};    // Probabilities of successful searches. size = n+1
-  // Vector<float> q = {0.05, 0.10, 0.05, 0.05, 0.05, 0.10, 0.05, 0.15}; // Probabilities of unsuccessful searches. size = n+1
+  // int n;           // Number of nodes in the tree.
+  // Vector<float> p; // Probabilities of successful searches. size = n+1
+  // Vector<float> q; // Probabilities of unsuccessful searches. size = n+1
 
   // // Labels for nodes (keys). These represent the values associated with the nodes in the OBST. size = n
-  // Vector<std::string> labels = {
-  //     "a",
-  //     "b",
-  //     "c",
-  //     "d",
-  //     "e",
-  //     "f",
-  //     "g",
-  // };
+  // Vector<std::string> labels;
+
+  // Utils::getDataFromUser(labels, n, p, q);
+  // p.display();
+  // q.display();
+  // std::cout << n << std::endl;
+  // labels.display();
 
   // ? Test case 1
-  // int n = 30;
-  // Vector<float> p = {
-  //     0.0, 0.10, 0.15, 0.10, 0.05, 0.20, 0.15, 0.05,
-  //     0.10, 0.25, 0.20, 0.05, 0.30, 0.10, 0.15, 0.05,
-  //     0.25, 0.10, 0.20, 0.15, 0.30, 0.05, 0.20, 0.10,
-  //     0.25, 0.15, 0.10, 0.05, 0.15, 0.10, 0.20};
-  // Vector<float> q = {
-  //     0.05, 0.10, 0.15, 0.05, 0.10, 0.05, 0.20, 0.15,
-  //     0.05, 0.10, 0.05, 0.15, 0.10, 0.20, 0.05, 0.15,
-  //     0.05, 0.10, 0.15, 0.05, 0.30, 0.10, 0.20, 0.05,
-  //     0.10, 0.15, 0.20, 0.10, 0.05, 0.15, 0.10};
-  // Vector<std::string> labels = {
-  //     "a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
-  //     "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
-  //     "u", "v", "w", "x", "y", "z", "aa", "ab", "ac", "ad"};
+  int n = 30;
+  Vector<float> p = {
+      0.0, 0.10, 0.15, 0.10, 0.05, 0.20, 0.15, 0.05,
+      0.10, 0.25, 0.20, 0.05, 0.30, 0.10, 0.15, 0.05,
+      0.25, 0.10, 0.20, 0.15, 0.30, 0.05, 0.20, 0.10,
+      0.25, 0.15, 0.10, 0.05, 0.15, 0.10, 0.20};
+  Vector<float> q = {
+      0.05, 0.10, 0.15, 0.05, 0.10, 0.05, 0.20, 0.15,
+      0.05, 0.10, 0.05, 0.15, 0.10, 0.20, 0.05, 0.15,
+      0.05, 0.10, 0.15, 0.05, 0.30, 0.10, 0.20, 0.05,
+      0.10, 0.15, 0.20, 0.10, 0.05, 0.15, 0.10};
+  Vector<std::string> labels = {
+      "a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
+      "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
+      "u", "v", "w", "x", "y", "z", "aa", "ab", "ac", "ad"};
 
   // ? Test case 2
   // int n = 4;
@@ -88,16 +86,16 @@ int main()
   // Vector<std::string> labels = {"10", "20", "30", "40"};
 
   // ? Test case 3
-  //  int n = 3;
-  //  Vector<float> p = {0, 34, 8, 50};
-  //  Vector<float> q = {0, 0, 0, 0};
-  //  Vector<std::string> labels = {"10", "12", "20"};
+  // int n = 3;
+  // Vector<float> p = {0, 34, 8, 50};
+  // Vector<float> q = {0, 0, 0, 0};
+  // Vector<std::string> labels = {"10", "12", "20"};
 
   // ? Test case 4, from this video: https://www.youtube.com/watch?v=67Y_Ww_-Jaw
-  int n = 4;
-  Vector<float> p = {0, 3, 3, 1, 1};
-  Vector<float> q = {2, 3, 1, 1, 1};
-  Vector<std::string> labels = {"20", "40", "60", "80"};
+  // int n = 4;
+  // Vector<float> p = {0, 3, 3, 1, 1};
+  // Vector<float> q = {2, 3, 1, 1, 1};
+  // Vector<std::string> labels = {"20", "40", "60", "80"};
 
   // **OBST GENERATION**
   // The `OBST::generateTheOBST` function computes the OBST using:
@@ -105,7 +103,7 @@ int main()
   // - Probabilities of unsuccessful searches (`q`).
   // - Node labels (`labels`).
   // The `true` parameter enables intermediate output (debugging or analysis purposes).
-  Tree noiceTree = OBST::generateTheOBST(p, q, labels, false);
+  Tree noiceTree = OBST::generateTheOBST(p, q, labels, true);
 
   // **OUTPUT TREE**
   // Displays the generated tree structure in a readable format.

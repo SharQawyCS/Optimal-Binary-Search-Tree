@@ -35,7 +35,7 @@ private:
     displayTreeHelper(node->right, depth + 1);
 
     // Print the current node with indentation proportional to depth
-    std::cout << std::setw(4 * depth) << "" << node->key << std::endl;
+    std::cout << std::setw(2 * depth) << "" << node->key << std::endl;
 
     // Display the left subtree
     displayTreeHelper(node->left, depth + 1);

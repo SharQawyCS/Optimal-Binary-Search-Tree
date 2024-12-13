@@ -30,7 +30,7 @@ private:
   {
     for (int a = 1; a <= N; a++)
     {
-      // Base case for subtrees with no keys: cost and weight are based on dummy keys
+      // Base case for subtrees with no keys
       W[a][a - 1] = E[a][a - 1] = Q[a - 1];
 
       // Base case for subtrees with one key: root is the key itself
@@ -56,8 +56,8 @@ private:
     {
       for (int i = 1; i <= N - l + 1; i++) // i is the start of the subtree
       {
-        int j = i + l - 1; // j is the end of the subtree
-        E[i][j] = 30000;   // Initialize the cost to a large value (infinity)
+        int j = i + l - 1;   // j is the end of the subtree
+        E[i][j] = INT32_MAX; // Initialize the cost to a large value (infinity)
 
         // Update the weight of the subtree [i, j]
         W[i][j] = W[i][j - 1] + P[j] + Q[j];
@@ -66,13 +66,13 @@ private:
         for (int r = Root[i][j - 1]; r <= Root[i + 1][j]; r++)
         {
           // Calculate the cost if `r` is chosen as the root
-          float t = E[i][r - 1] + E[r + 1][j] + W[i][j];
+          float currCost = E[i][r - 1] + E[r + 1][j] + W[i][j];
 
           // If this cost is the smallest, update the root and cost
-          if (t < E[i][j])
+          if (currCost < E[i][j])
           {
-            E[i][j] = t;    // Update minimum cost
-            Root[i][j] = r; // Save the optimal root
+            E[i][j] = currCost; // Update minimum cost
+            Root[i][j] = r;     // Save the optimal root
           }
         }
       }
@@ -93,10 +93,10 @@ private:
       return nullptr;
 
     // Get the root index for the range [i, j]
-    int r = static_cast<int>(root[i][j]);
+    int r = int(root[i][j]);
 
     // Create a new tree node for this root
-    TreeNode *node = new TreeNode(labels[r - 1]); // Labels are 0-indexed, so adjust `r`
+    TreeNode *node = new TreeNode(labels[r - 1]); // Labels are 0-indexed
 
     // Recursively build the left and right subtrees
     node->left = buildTreeFromRoot(root, labels, i, r - 1);  // Left subtree is [i, r-1]
@@ -136,7 +136,7 @@ public:
   {
     int n = p.size() - 1; // Number of keys (p[0] is unused)
 
-    // Create 2D tables for cost, weight, and root
+    // Create 2D Vectors for cost, weight, and root
     Vector<Vector<float>> e = Utils::create2D<float>(n + 2, n + 2);
     Vector<Vector<float>> w = Utils::create2D<float>(n + 2, n + 2);
     Vector<Vector<float>> root = Utils::create2D<float>(n + 2, n + 2);
@@ -147,7 +147,7 @@ public:
     // Compute the tables for all subtrees
     computeOBST(e, w, root, n, p, q);
 
-    // Optionally display the tables
+    // Display the tables if u want
     if (displayTables)
     {
       std::cout << "\n====== Derived Outputs ======\n";
