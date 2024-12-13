@@ -1,3 +1,17 @@
+/*
+ * This project is licensed under the MIT License.
+ * See the LICENSE file for details.
+ */
+
+/**
+ * This project focuses on implementing and visualizing an Optimal Binary Search Tree (OBST),
+ * a specialized data structure designed to minimize search costs when access probabilities are known.
+ * It includes a dynamic programming algorithm to construct the OBST,
+ * ensuring optimal arrangement of keys based on their probabilities.
+ * Additionally, the project generates DOT files to visually represent the tree structure,
+ * complete with null pointers and node connections, making the OBST easy to analyze and understand.
+ */
+
 /**
  * @file main.cpp
  * @brief Entry point for the Optimal Binary Search Tree (OBST) project.
@@ -5,6 +19,13 @@
  * This file initializes and runs the OBST application. It demonstrates how to compute
  * the OBST using given probabilities and labels using DP, providing an interactive educational
  * tool for understanding OBST concepts.
+ *
+ * This project focuses on implementing and visualizing an Optimal Binary Search Tree (OBST),
+ * a specialized data structure designed to minimize search costs when access probabilities are known.
+ * It includes a dynamic programming algorithm to construct the OBST,
+ * ensuring optimal arrangement of keys based on their probabilities.
+ * Additionally, the project generates DOT files to visually represent the tree structure,
+ * complete with null pointers and node connections, making the OBST easy to analyze and understand.
  */
 
 #include <iostream>
@@ -14,14 +35,12 @@
 #include "TreeVisualization.h" // Generates DOT files for tree visualization.
 
 /**
- * @brief Main function for testing the Optimal Binary Search Tree (OBST) application.
+ * @brief Main function for running and testing the Optimal Binary Search Tree (OBST) application.
  *
  * This function performs the following steps:
  * 1. Initializes data for probabilities and node labels.
  * 2. Calls the OBST algorithm to compute the tree structure and related metrics.
  * 3. Displays the resulting tree structure and outputs the execution results.
- *
- * @return int Exit code (0 for success).
  */
 int main()
 {
@@ -30,20 +49,20 @@ int main()
   // **INPUT DATA SETUP**
   // Data to be input by the user (hardcoded for simplicity in this implementation).
 
-  int n = 7;                                                          // Number of nodes in the tree.
-  Vector<float> p = {0, 0.15, 0.10, 0.05, 0.10, 0.20, 0.10, 0.20};    // Probabilities of successful searches. size = n+1
-  Vector<float> q = {0.05, 0.10, 0.05, 0.05, 0.05, 0.10, 0.05, 0.15}; // Probabilities of unsuccessful searches. size = n+1
+  // int n = 7;                                                          // Number of nodes in the tree.
+  // Vector<float> p = {0, 0.15, 0.10, 0.05, 0.10, 0.20, 0.10, 0.20};    // Probabilities of successful searches. size = n+1
+  // Vector<float> q = {0.05, 0.10, 0.05, 0.05, 0.05, 0.10, 0.05, 0.15}; // Probabilities of unsuccessful searches. size = n+1
 
-  // Labels for nodes (keys). These represent the values associated with the nodes in the OBST. size = n
-  Vector<std::string> labels = {
-      "a",
-      "b",
-      "c",
-      "d",
-      "e",
-      "f",
-      "g",
-  };
+  // // Labels for nodes (keys). These represent the values associated with the nodes in the OBST. size = n
+  // Vector<std::string> labels = {
+  //     "a",
+  //     "b",
+  //     "c",
+  //     "d",
+  //     "e",
+  //     "f",
+  //     "g",
+  // };
 
   // ? Test case 1
   // int n = 30;
@@ -74,25 +93,31 @@ int main()
   //  Vector<float> q = {0, 0, 0, 0};
   //  Vector<std::string> labels = {"10", "12", "20"};
 
+  // ? Test case 4, from this video: https://www.youtube.com/watch?v=67Y_Ww_-Jaw
+  int n = 4;
+  Vector<float> p = {0, 3, 3, 1, 1};
+  Vector<float> q = {2, 3, 1, 1, 1};
+  Vector<std::string> labels = {"20", "40", "60", "80"};
+
   // **OBST GENERATION**
   // The `OBST::generateTheOBST` function computes the OBST using:
   // - Probabilities of successful searches (`p`).
   // - Probabilities of unsuccessful searches (`q`).
   // - Node labels (`labels`).
   // The `true` parameter enables intermediate output (debugging or analysis purposes).
-  Tree tree = OBST::generateTheOBST(p, q, labels, false);
+  Tree noiceTree = OBST::generateTheOBST(p, q, labels, false);
 
   // **OUTPUT TREE**
   // Displays the generated tree structure in a readable format.
   std::cout << "MY TREE:" << std::endl;
-  tree.displayTree();
+  noiceTree.displayTree();
 
   // **VISUALIZATION**
   // Generates a DOT file for the tree structure and visualizes it as an image.
   const std::string OUTPUT_IMAGE = "tree.png";
   const std::string DOT_FILE = "tree.dot";
 
-  TreeVisualization::visualizeTree(tree, DOT_FILE, OUTPUT_IMAGE, true);
+  TreeVisualization::visualizeTree(noiceTree, DOT_FILE, OUTPUT_IMAGE, true);
 
   return 0;
 }

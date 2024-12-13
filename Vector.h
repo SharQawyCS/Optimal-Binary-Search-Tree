@@ -137,12 +137,12 @@ public:
   /**
    * @brief Display the elements of the vector.
    *
-   * This function prints all the elements of the vector to the console, separated by spaces.
+   * This function prints all the elements of the vector to the console.
    */
-  void display()
+  void display(std::string sep = " ")
   {
     for (int i = 0; i < len; ++i)
-      std::cout << data[i] << " ";
+      std::cout << data[i] << sep;
 
     std::cout << std::endl;
   }
