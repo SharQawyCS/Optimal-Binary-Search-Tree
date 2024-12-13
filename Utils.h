@@ -73,8 +73,14 @@ namespace Utils
       std::cin >> input;
       if (std::cin.good())
       {
-        // everything went well, we'll get out of the loop and return the value
-        valid = true;
+        if (input > 0)
+        {
+          valid = true; // everything went well, we'll get out of the loop and return the value
+        }
+        else
+        {
+          std::cout << "Invalid input; please enter a positive integer: ";
+        }
       }
       else
       {
@@ -82,7 +88,7 @@ namespace Utils
         std::cin.clear();
         // and empty it
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << "Invalid input; please re-enter." << std::endl;
+        std::cout << "Invalid input; please enter a valid integer: ";
       }
     } while (!valid);
 
@@ -99,8 +105,14 @@ namespace Utils
       std::cin >> input;
       if (std::cin.good())
       {
-        // everything went well, we'll get out of the loop and return the value
-        valid = true;
+        if (input > 0)
+        {
+          valid = true; // everything went well, we'll get out of the loop and return the value
+        }
+        else
+        {
+          std::cout << "Invalid input; please enter a positive probability: ";
+        }
       }
       else
       {
@@ -108,7 +120,7 @@ namespace Utils
         std::cin.clear();
         // and empty it
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << "Invalid input; please re-enter." << std::endl;
+        std::cout << "Invalid input; please enter a valid float: ";
       }
     } while (!valid);
 
