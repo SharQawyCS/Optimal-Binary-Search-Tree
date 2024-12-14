@@ -63,7 +63,14 @@ namespace Utils
     }
   }
 
-  float readFloatInput(std::string msg = "Enter a valid float number: ")
+  std::string readString()
+  {
+    std::string input;
+
+    return input;
+  }
+
+  float readFloatInput(std::string msg = "Enter a valid float number: ", bool canEqualZero = false)
   {
     float input = -1;
     bool valid = false;
@@ -73,7 +80,7 @@ namespace Utils
       std::cin >> input;
       if (std::cin.good())
       {
-        if (input > 0)
+        if (input > 0 || (canEqualZero && input == 0))
         {
           valid = true; // everything went well, we'll get out of the loop and return the value
         }
@@ -95,11 +102,39 @@ namespace Utils
     return (input);
   }
 
+  template <typename T>
+  void _swap(T &a, T &b)
+  {
+    T temp = a;
+    a = b;
+    b = temp;
+  }
+
+  void sortInputs(Vector<std::string> &_dataLabels, Vector<float> &_P, Vector<float> &_Q)
+  {
+    int n = _dataLabels.size(); // Number of nodes
+
+    for (int i = 0; i < n - 1; i++)
+    {
+      for (int j = 0; j < n - i - 1; j++)
+      {
+        if (_dataLabels[j] > _dataLabels[j + 1])
+        {
+          // 0 1 2 3 4 5   => P
+          // _ 0 1 2 3 4   => label
+          _swap(_dataLabels[j], _dataLabels[j + 1]);
+          _swap(_P[j + 1], _P[j + 2]);
+          _swap(_Q[j + 1], _Q[j + 2]);
+        }
+      }
+    }
+  }
+
   void getDataFromUser(Vector<std::string> &DataLables, int &N, Vector<float> &P, Vector<float> &Q)
   {
     // Getting number of nodes...
     // std::cin >> N;
-    N = (int)readFloatInput("Enter number of nodes: ");
+    N = (int)readFloatInput("Enter number of nodes: ", false);
     std::cin.ignore();
 
     // Getting data labels...
@@ -123,7 +158,7 @@ namespace Utils
     for (size_t i = 1; i <= N; i++)
     {
       std::string msg = "Enter p[" + std::to_string(i) + "]: ";
-      P[i] = readFloatInput(msg);
+      P[i] = readFloatInput(msg, false);
     }
 
     // Getting probability of un-successful search (q)...
@@ -133,15 +168,9 @@ namespace Utils
     for (size_t i = 0; i <= N; i++)
     {
       std::string msg = "Enter q[" + std::to_string(i) + "]: ";
-      Q[i] = readFloatInput(msg);
+      Q[i] = readFloatInput(msg, true);
     }
-  }
 
-  template <typename T>
-  void swapTwo(T &a, T &b)
-  {
-    T temp = a;
-    a = b;
-    b = temp;
+    sortInputs(DataLables, P, Q); // Sort inputs after gettint them
   }
-}
+} // END UTILS

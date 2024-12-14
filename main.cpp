@@ -56,7 +56,7 @@ int main()
   labels.display(", ");
   p.display();
   q.display();
-  std::cout << n << std::endl;
+  std::cout << n << std ::endl;
 
   // ? Test case 1
   // int n = 30;
