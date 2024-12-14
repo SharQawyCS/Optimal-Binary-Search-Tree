@@ -63,38 +63,6 @@ namespace Utils
     }
   }
 
-  int readIntInput(std::string msg = "Enter a valid integer: ")
-  { // Source: https://stackoverflow.com/questions/16934183/integer-validation-for-input
-    int input = -1;
-    bool valid = false;
-    do
-    {
-      std::cout << msg << std::flush;
-      std::cin >> input;
-      if (std::cin.good())
-      {
-        if (input > 0)
-        {
-          valid = true; // everything went well, we'll get out of the loop and return the value
-        }
-        else
-        {
-          std::cout << "Invalid input; please enter a positive integer: ";
-        }
-      }
-      else
-      {
-        // something went wrong, we reset the buffer's state to good
-        std::cin.clear();
-        // and empty it
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << "Invalid input; please enter a valid integer: ";
-      }
-    } while (!valid);
-
-    return (input);
-  }
-
   float readFloatInput(std::string msg = "Enter a valid float number: ")
   {
     float input = -1;
@@ -111,7 +79,7 @@ namespace Utils
         }
         else
         {
-          std::cout << "Invalid input; please enter a positive probability: ";
+          std::cout << "Invalid input; please enter a positive number: ";
         }
       }
       else
@@ -120,7 +88,7 @@ namespace Utils
         std::cin.clear();
         // and empty it
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << "Invalid input; please enter a valid float: ";
+        std::cout << "Invalid input!! ";
       }
     } while (!valid);
 
@@ -131,7 +99,7 @@ namespace Utils
   {
     // Getting number of nodes...
     // std::cin >> N;
-    N = readIntInput("Enter number of nodes: ");
+    N = (int)readFloatInput("Enter number of nodes: ");
     std::cin.ignore();
 
     // Getting data labels...

@@ -1,16 +1,19 @@
 digraph OBST {
   node [shape=circle];
-  "78j" -> "kjk";
-  "kjk" -> "65";
+  "423" -> "23";
   null0 [shape=point];
-  "65" -> null0;
+  "23" -> null0;
+  "23" -> "432";
   null1 [shape=point];
-  "65" -> null1;
+  "432" -> null1;
   null2 [shape=point];
-  "kjk" -> null2;
-  "78j" -> "jkk7j6";
+  "432" -> null2;
+  "423" -> "423";
   null3 [shape=point];
-  "jkk7j6" -> null3;
+  "423" -> null3;
+  "423" -> "423";
   null4 [shape=point];
-  "jkk7j6" -> null4;
+  "423" -> null4;
+  null5 [shape=point];
+  "423" -> null5;
 }
