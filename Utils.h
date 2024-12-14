@@ -63,11 +63,36 @@ namespace Utils
     }
   }
 
-  std::string readString()
+  std::string readLabel(const Vector<std::string> &vec, std::string msg = "Enter a string: ")
   {
     std::string input;
+    bool valid = false; // Valid if not found (if return -1)
+    do
+    {
+      std::cout << msg << std::flush;
+      std::cin >> input;
+      if (std::cin.good())
+      {
+        if (vec.findOne(input) == -1)
+        {
+          valid = true; // everything went well, we'll get out of the loop and return the value
+        }
+        else
+        {
+          std::cout << "Invalid input; please enter a non-duplicated label: ";
+        }
+      }
+      else
+      {
+        // something went wrong, we reset the buffer's state to good
+        std::cin.clear();
+        // and empty it
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cout << "Invalid input!! ";
+      }
+    } while (!valid);
 
-    return input;
+    return (input);
   }
 
   float readFloatInput(std::string msg = "Enter a valid float number: ", bool canEqualZero = false)
@@ -110,6 +135,44 @@ namespace Utils
     b = temp;
   }
 
+  bool isNumeric(const std::string &str)
+  {
+    for (char c : str)
+    {
+      if (!std::isdigit(c))
+      {
+        return false;
+      }
+    }
+    return !str.empty();
+  }
+
+  // Function to compare two strings
+  int compareStrings(const std::string &a, const std::string &b)
+  {
+    bool aIsNumeric = isNumeric(a);
+    bool bIsNumeric = isNumeric(b);
+
+    if (aIsNumeric && bIsNumeric)
+    {
+      // Compare as integers if both are numeric
+      long long numA = std::stoll(a);
+      long long numB = std::stoll(b);
+      if (numA < numB)
+        return -1;
+      if (numA > numB)
+        return 1;
+      return 0; // Equal
+    }
+
+    // Compare lexicographically
+    if (a < b)
+      return -1;
+    if (a > b)
+      return 1;
+    return 0;
+  }
+
   void sortInputs(Vector<std::string> &_dataLabels, Vector<float> &_P, Vector<float> &_Q)
   {
     int n = _dataLabels.size(); // Number of nodes
@@ -118,7 +181,8 @@ namespace Utils
     {
       for (int j = 0; j < n - i - 1; j++)
       {
-        if (_dataLabels[j] > _dataLabels[j + 1])
+        // if (_dataLabels[j] > _dataLabels[j + 1])
+        if (compareStrings(_dataLabels[j], _dataLabels[j + 1]) == 1)
         {
           // 0 1 2 3 4 5   => P
           // _ 0 1 2 3 4   => label
@@ -143,11 +207,13 @@ namespace Utils
     std::cout << "Entering data labels....\n";
     for (size_t i = 0; i < N; i++)
     {
-      std::string in;
-      std::cout << "Enter label " << i + 1 << ": ";
-      std::cin >> in;
-      std::cin.ignore();
-      DataLables[i] = in;
+      // std::string in;
+      // std::cout << "Enter label " << i + 1 << ": ";
+      std::string msg = "Enter label " + std::to_string(i + 1) + ": ";
+      // std::cin >> in;
+
+      // std::cin.ignore();
+      DataLables[i] = readLabel(DataLables, msg);
     }
 
     // Getting probability of successful search (p)...

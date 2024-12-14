@@ -150,4 +150,14 @@ public:
 
     std::cout << std::endl;
   }
+
+  int findOne(T key) const
+  {
+    for (int i = 0; i < len; ++i)
+    {
+      if (data[i] == key)
+        return i;
+    }
+    return -1;
+  }
 };
