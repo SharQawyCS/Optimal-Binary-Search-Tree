@@ -39,10 +39,9 @@ public:
 
 void CLI::run()
 {
-  Utils::clearTerminal();
-
   while (true)
   {
+    Utils::clearTerminal();
     std::cout << "\n===== Optimal BST CLI =====\n";
     std::cout << "1. Edit Tree\n";
     std::cout << "2. Visualize Tree\n";
