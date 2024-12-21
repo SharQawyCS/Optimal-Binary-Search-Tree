@@ -39,6 +39,8 @@ public:
 
 void CLI::run()
 {
+  Utils::clearTerminal();
+
   while (true)
   {
     std::cout << "\n===== Optimal BST CLI =====\n";

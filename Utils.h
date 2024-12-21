@@ -239,4 +239,18 @@ namespace Utils
 
     sortInputs(DataLables, P, Q); // Sort inputs after gettint them
   }
+
+  /**
+   * @brief Clears the terminal screen, compatible with most operating systems.
+   */
+  void clearTerminal()
+  {
+#ifdef _WIN32
+    // Windows
+    std::system("cls");
+#else
+    // Unix-based (Linux, macOS, etc.)
+    std::system("clear");
+#endif
+  }
 } // END UTILS

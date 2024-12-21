@@ -19,7 +19,6 @@
  * This file initializes and runs the OBST application. It demonstrates how to compute
  * the OBST using given probabilities and labels using DP, providing an interactive educational
  * tool for understanding OBST concepts.
- *
  * This project focuses on implementing and visualizing an Optimal Binary Search Tree (OBST),
  * a specialized data structure designed to minimize search costs when access probabilities are known.
  * It includes a dynamic programming algorithm to construct the OBST,
