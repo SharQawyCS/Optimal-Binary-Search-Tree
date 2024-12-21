@@ -33,7 +33,7 @@
 #include "OBST.h"              // Contains the OBST algorithm and related logic.
 #include "Tree.h"              // Handles tree structure and visualization.
 #include "TreeVisualization.h" // Generates DOT files for tree visualization.
-#include "CLI.h"               // Command-line interface for user interaction.
+#include "CLI/CLI.h"           // Command-line interface for user interaction.
 
 /**
  * @brief Main function for running and testing the Optimal Binary Search Tree (OBST) application.
@@ -46,7 +46,7 @@
 int main()
 {
   CLI cli;
-  cli.run();
+  cli.show();
 
   // ? Test case 1
   // int n = 30;

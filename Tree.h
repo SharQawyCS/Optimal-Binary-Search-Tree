@@ -205,7 +205,7 @@ private:
     return newNode;
   }
 
-  // === Analysis Helper Methods (No STL) ===
+  // === Analysis Helper Methods ===
   int computeHeight(TreeNode *node) const
   {
     if (!node)
@@ -268,7 +268,7 @@ public:
     root = copySubtree(otherTree.root);
   }
 
-  // === New Analysis Methods (No STL) ===
+  // === New Analysis Methods ===
   void analyzeTree() const
   {
     int height = computeHeight(root);
@@ -276,7 +276,6 @@ public:
     int leafNodes = countLeafNodes(root);
     double averageDepth = (totalNodes == 0) ? 0.0 : static_cast<double>(sumOfDepths(root, 0)) / totalNodes;
 
-    std::cout << "\n===== Tree Analysis =====\n";
     std::cout << "Height of the Tree: " << height << std::endl;
     std::cout << "Total Number of Nodes: " << totalNodes << std::endl;
     std::cout << "Number of Leaf Nodes: " << leafNodes << std::endl;
