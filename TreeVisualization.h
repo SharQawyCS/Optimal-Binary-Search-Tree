@@ -1,3 +1,5 @@
+#pragma once
+
 // impelement
 #include <iostream>
 #include <fstream>

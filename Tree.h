@@ -113,4 +113,44 @@ public:
   {
     displayTreeHelper(root);
   }
+
+  /**
+   * @brief Assign the structure of another tree to this tree.
+   *
+   * This function clears the current tree and deep-copies the structure
+   * of the given tree.
+   *
+   * @param otherTree The tree to copy from.
+   */
+  void assign(const Tree &otherTree)
+  {
+    // Clear the current tree
+    deleteTree(root);
+
+    // Deep copy the root of the other tree
+    root = copySubtree(otherTree.root);
+  }
+
+  /**
+   * @brief Helper function to copy a subtree.
+   *
+   * This function recursively copies the structure of a subtree.
+   *
+   * @param node The root of the subtree to copy.
+   * @return A pointer to the root of the new subtree.
+   */
+  TreeNode *copySubtree(TreeNode *node) const
+  {
+    if (!node)
+      return nullptr;
+
+    // Create a new node with the same key
+    TreeNode *newNode = new TreeNode(node->key);
+
+    // Recursively copy the left and right children
+    newNode->left = copySubtree(node->left);
+    newNode->right = copySubtree(node->right);
+
+    return newNode;
+  }
 };

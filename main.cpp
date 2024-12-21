@@ -29,10 +29,12 @@
  */
 
 #include <iostream>
+#include <string>
 #include "Vector.h"            // Custom vector class used for dynamic arrays.
 #include "OBST.h"              // Contains the OBST algorithm and related logic.
 #include "Tree.h"              // Handles tree structure and visualization.
 #include "TreeVisualization.h" // Generates DOT files for tree visualization.
+#include "CLI.h"               // Command-line interface for user interaction.
 
 /**
  * @brief Main function for running and testing the Optimal Binary Search Tree (OBST) application.
@@ -44,19 +46,8 @@
  */
 int main()
 {
-  std::cout << "==== Optimal Binary Search Tree Application ====" << std::endl;
-
-  // **INPUT DATA SETUP**
-  int n;                         // Number of nodes in the tree.
-  Vector<float> p(0);            // Probabilities of successful searches. size = n+1
-  Vector<float> q(0);            // Probabilities of unsuccessful searches. size = n+1
-  Vector<std::string> labels(0); // Labels for nodes (keys). These represent the values associated with the nodes in the OBST. size = n
-
-  Utils::getDataFromUser(labels, n, p, q);
-  labels.display(", ");
-  p.display();
-  q.display();
-  std::cout << n << std ::endl;
+  CLI cli;
+  cli.run();
 
   // ? Test case 1
   // int n = 30;
@@ -92,26 +83,6 @@ int main()
   // Vector<float> p = {0, 3, 3, 1, 1};
   // Vector<float> q = {2, 3, 1, 1, 1};
   // Vector<std::string> labels = {"20", "40", "60", "80"};
-
-  // **OBST GENERATION**
-  // The `OBST::generateTheOBST` function computes the OBST using:
-  // - Probabilities of successful searches (`p`).
-  // - Probabilities of unsuccessful searches (`q`).
-  // - Node labels (`labels`).
-  // The `true` parameter enables intermediate output (debugging or analysis purposes).
-  Tree noiceTree = OBST::generateTheOBST(p, q, labels, true);
-
-  // **OUTPUT TREE**
-  // Displays the generated tree structure in a readable format.
-  std::cout << "MY TREE:" << std::endl;
-  noiceTree.displayTree();
-
-  // **VISUALIZATION**
-  // Generates a DOT file for the tree structure and visualizes it as an image.
-  const std::string OUTPUT_IMAGE = "tree.png";
-  const std::string DOT_FILE = "tree.dot";
-
-  TreeVisualization::visualizeTree(noiceTree, DOT_FILE, OUTPUT_IMAGE, true);
 
   return 0;
 }
