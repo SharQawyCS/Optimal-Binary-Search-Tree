@@ -17,10 +17,11 @@ private:
   std::string DOT_FILE = "tree.dot";
   std::string OUTPUT_IMAGE = "tree.png";
 
-  void editTree();          // Option 1 in main menu
-  void displayTree() const; // Option 2 in main menu
-  void visualizeTree();     // Option 3 in main menu
-  void analyzeTree();       // Option 4 in main menu
+  void editTree();             // Option 1 in main menu
+  void displayTree() const;    // Option 2 in main menu
+  void visualizeTree();        // Option 3 in main menu
+  void analyzeTree();          // Option 4 in main menu
+  void DisplayDerivedTables(); // Option 5 in main menu
 
   // Submenu for editing the tree
   void createTreeFromScratch();
@@ -49,9 +50,10 @@ void CLI::show()
     std::cout << "2. Display Tree\n";
     std::cout << "3. Visualize Tree\n";
     std::cout << "4. Analyze Tree\n";
+    std::cout << "5. Display Derived Tables\n";
     std::cout << "0. Exit\n";
 
-    int choice = CLIHELPER::getChoice(4, "USE_DEFAULT");
+    int choice = CLIHELPER::getChoice(5, "USE_DEFAULT");
 
     switch (choice)
     {
@@ -67,7 +69,11 @@ void CLI::show()
     case 4:
       analyzeTree();
       break;
+    case 5:
+      DisplayDerivedTables();
+      break;
     case 0:
+      Utils::clearTerminal();
       std::cout << "Exiting... As-Salamu Alaykum!\n";
       return;
     default:
@@ -137,8 +143,10 @@ void CLI::displayTree() const
 
 void CLI::createTreeFromScratch()
 {
+  Utils::clearTerminal();
+
   Utils::getDataFromUser(labels, n, p, q);
-  tree.assign(OBST::generateTheOBST(p, q, labels, true));
+  tree.assign(OBST::generateTheOBST(p, q, labels, false));
 }
 
 void CLI::addNode()
@@ -155,6 +163,8 @@ void CLI::editNode()
 
 void CLI::visualizeTree()
 {
+  Utils::clearTerminal();
+
   std::cout << "Visualizing the tree...\n";
   TreeVisualization::visualizeTree(tree, DOT_FILE, OUTPUT_IMAGE, true);
 }
@@ -167,6 +177,27 @@ void CLI::analyzeTree()
     std::cout << "\n===== Tree Analysis =====\n";
 
     tree.analyzeTree();
+
+    int choice = CLIHELPER::getChoice(0, "\nPress [0] to back to main menu\n");
+
+    switch (choice)
+    {
+    case 0:
+      return; // Go back to the main menu
+    default:
+      std::cout << "Invalid choice. (from default of while)\n";
+    }
+  }
+}
+
+void CLI::DisplayDerivedTables()
+{
+  while (true)
+  {
+    Utils::clearTerminal();
+    std::cout << "\n===== Display Derived Tables =====\n";
+
+    OBST::generateTheOBST(p, q, labels, true);
 
     int choice = CLIHELPER::getChoice(0, "\nPress [0] to back to main menu\n");
 

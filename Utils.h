@@ -63,6 +63,20 @@ namespace Utils
     }
   }
 
+  /**
+   * @brief Clears the terminal screen, compatible with most operating systems.
+   */
+  void clearTerminal()
+  {
+#ifdef _WIN32
+    // Windows
+    std::system("cls");
+#else
+    // Unix-based (Linux, macOS)
+    std::system("clear");
+#endif
+  }
+
   std::string readLabel(const Vector<std::string> &vec, std::string msg = "Enter a string: ")
   {
     std::string input;
@@ -173,7 +187,7 @@ namespace Utils
     return 0;
   }
 
-  void sortInputs(Vector<std::string> &_dataLabels, Vector<float> &_P, Vector<float> &_Q)
+  void sortInputs(Vector<std::string> &_dataLabels, Vector<float> &_P)
   {
     int n = _dataLabels.size(); // Number of nodes
 
@@ -188,7 +202,6 @@ namespace Utils
           // _ 0 1 2 3 4   => label
           _swap(_dataLabels[j], _dataLabels[j + 1]);
           _swap(_P[j + 1], _P[j + 2]);
-          _swap(_Q[j + 1], _Q[j + 2]);
         }
       }
     }
@@ -199,12 +212,17 @@ namespace Utils
     // Getting number of nodes...
     // std::cin >> N;
     N = (int)readFloatInput("Enter number of nodes: ", false);
+    while (N < 2)
+    {
+      std::cout << "Invalid input; The number of nodes must be greater than 1.\n";
+      N = (int)readFloatInput("Enter number of nodes: ", false);
+    }
     std::cin.ignore();
 
     // Getting data labels...
     // DataLables = Vector<std::string>(N);
     DataLables.resize(N);
-    std::cout << "Entering data labels....\n";
+    std::cout << "\nEntering data labels....\n";
     for (size_t i = 0; i < N; i++)
     {
       // std::string in;
@@ -216,41 +234,71 @@ namespace Utils
       DataLables[i] = readLabel(DataLables, msg);
     }
 
+    clearTerminal();
+    std::cout << "Data labels: ";
+    DataLables.display();
+
     // Getting probability of successful search (p)...
     // P = Vector<float>(N + 1);
     P.resize(N + 1);
-    std::cout << "Entering probability of successful search....\n";
+    std::cout << "\nEntering probability of successful search....\n\n";
     P[0] = 0;
     for (size_t i = 1; i <= N; i++)
     {
-      std::string msg = "Enter p[" + std::to_string(i) + "]: ";
+      std::string msg = "Enter p[" + DataLables[i - 1] + "]: ";
       P[i] = readFloatInput(msg, false);
     }
 
-    // Getting probability of un-successful search (q)...
-    // Q = Vector<float>(N + 1);
-    Q.resize(N + 1);
-    std::cout << "Entering probability of un-successful search....\n";
-    for (size_t i = 0; i <= N; i++)
+    // After getting the probabilities, we need to sort the data labels and probabilities
+    sortInputs(DataLables, P); // Sort inputs after gettint them
+
+    clearTerminal();
+    std::cout << "Data labels  : ";
+    DataLables.display();
+    std::cout << "Probabilities: ";
+    P.display(false);
+
+    // Check if user need to enter q or not
+    std::string choice;
+    std::cout << "Do you want to enter probability of un-successful search (q)? ('y' to 'yes'): ";
+    std::cin >> choice;
+    if (choice != "y")
     {
-      std::string msg = "Enter q[" + std::to_string(i) + "]: ";
-      Q[i] = readFloatInput(msg, true);
+      Q.resize(N + 1);
+      for (size_t i = 0; i <= N; i++)
+      {
+        Q[i] = 0;
+      }
+    }
+    else
+    {
+      // Getting probability of un-successful search (q)...
+      // Q = Vector<float>(N + 1);
+      Q.resize(N + 1);
+      std::cout << "\nEntering probability of un-successful search....\n";
+      std::string msg = "Enter probability of inserting a node less than " + DataLables[0] + ": ";
+      Q[0] = readFloatInput(msg, true);
+      for (size_t i = 1; i < N; i++)
+      {
+        std::string msg = "Enter probability of inserting a node between " + DataLables[i - 1] + " and " + DataLables[i] + ": ";
+        Q[i] = readFloatInput(msg, true);
+      }
+      msg = "Enter probability of inserting a node greater than " + DataLables[N - 1] + ": ";
+      Q[N] = readFloatInput(msg, true);
     }
 
-    sortInputs(DataLables, P, Q); // Sort inputs after gettint them
+    clearTerminal();
+    std::cout << "You have entered the following data:\n";
+    std::cout << "Data labels      :  ";
+    DataLables.display();
+    std::cout << "Probabilities (p):  ";
+    P.display(false);
+    std::cout << "Probabilities (q): ";
+    Q.display();
+
+    std::cout << "\nPress any key to continue...";
+    std::cin.ignore();
+    std::cin.get();
   }
 
-  /**
-   * @brief Clears the terminal screen, compatible with most operating systems.
-   */
-  void clearTerminal()
-  {
-#ifdef _WIN32
-    // Windows
-    std::system("cls");
-#else
-    // Unix-based (Linux, macOS)
-    std::system("clear");
-#endif
-  }
 } // END UTILS

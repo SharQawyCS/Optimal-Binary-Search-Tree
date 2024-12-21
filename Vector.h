@@ -143,10 +143,19 @@ public:
    *
    * This function prints all the elements of the vector to the console.
    */
-  void display(std::string sep = " ")
+  void display(bool printFirstElement = true, std::string sep = " ")
   {
-    for (int i = 0; i < len; ++i)
+    if (printFirstElement)
+    {
+      std::cout << data[0];
+      std::cout << sep;
+    }
+
+    for (int i = 1; i < len - 1; ++i)
       std::cout << data[i] << sep;
+
+    if (len > 0)
+      std::cout << data[len - 1];
 
     std::cout << std::endl;
   }

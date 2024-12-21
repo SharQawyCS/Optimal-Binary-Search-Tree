@@ -119,6 +119,20 @@ private:
   }
 
 public:
+  void static displayTables(const Vector<Vector<float>> &E, const Vector<Vector<float>> &W, const Vector<Vector<float>> &Root)
+  {
+    int n = E.size() - 1;
+
+    std::cout << "Cost Table (E):\n";
+    Utils::displayTwoDVec(E);
+
+    std::cout << "\nWeight Table (W):\n";
+    Utils::displayTwoDVec(W);
+
+    std::cout << "\nRoot Table:\n";
+    Utils::displayTwoDVec(Root);
+  }
+
   /**
    * @brief Generates an Optimal Binary Search Tree.
    *
@@ -132,7 +146,7 @@ public:
    * @param displayTables Whether to display the intermediate tables (default: false).
    * @return Tree The constructed Optimal Binary Search Tree.
    */
-  Tree static generateTheOBST(const Vector<float> &p, const Vector<float> &q, const Vector<std::string> &labels, bool displayTables = false)
+  Tree static generateTheOBST(const Vector<float> &p, const Vector<float> &q, const Vector<std::string> &labels, bool _displayTables = false)
   {
     int n = p.size() - 1; // Number of keys (p[0] is unused)
 
@@ -147,21 +161,15 @@ public:
     // Compute the tables for all subtrees
     computeOBST(e, w, root, n, p, q);
 
+    // make loc variables equal to the computed tables
+    // locE = e;
+    // locW = w;
+    // locRoot = root;
+
     // Display the tables if u want
-    if (displayTables)
+    if (_displayTables)
     {
-      std::cout << "\n====== Derived Outputs ======\n";
-      std::cout << "Cost Table (e):" << "\n";
-      Utils::displayTwoDVec(e);
-      std::cout << std::endl;
-
-      std::cout << "Weight Table (w):" << "\n";
-      Utils::displayTwoDVec(w);
-      std::cout << std::endl;
-
-      std::cout << "Root Table:" << "\n";
-      Utils::displayTwoDVec(root);
-      std::cout << std::endl;
+      displayTables(e, w, root);
     }
 
     // Build and return the OBST as a Tree object
