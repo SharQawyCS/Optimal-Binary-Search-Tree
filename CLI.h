@@ -18,13 +18,13 @@ private:
 
   void editTree();      // Option 1 in main menu
   void visualizeTree(); // Option 2 in main menu
-  void analyzeTree();   // Option 3 in main menu
+  void analyzeTree();   // Option 3 in main menu // TODO
 
   // Submenu for editing the tree
   void createTreeFromScratch();
-  void addNode();
-  void deleteNode();
-  void editNode();
+  void addNode();    // Todo
+  void deleteNode(); // Todo
+  void editNode();   // Todo
 
 public:
   CLI() {};
@@ -64,7 +64,7 @@ void CLI::run()
       analyzeTree();
       break;
     case 4:
-      std::cout << "Exiting. Goodbye!\n";
+      std::cout << "Exiting... As-Salamu Alaykum!\n";
       return;
     default:
       std::cout << "Invalid choice. Please try again.\n";
@@ -76,6 +76,7 @@ void CLI::editTree()
 {
   while (true)
   {
+    Utils::clearTerminal();
     std::cout << "\n===== Edit Tree =====\n";
     std::cout << "1. Create a Tree from Scratch\n";
     std::cout << "2. Add a New Node\n";
@@ -133,4 +134,25 @@ void CLI::visualizeTree()
 
 void CLI::analyzeTree()
 {
+  while (true)
+  {
+    Utils::clearTerminal();
+    std::cout << "\n===== Tree Analysis =====\n";
+
+    tree.analyzeTree();
+
+    std::cout << "0. Back to Main Menu\n";
+    std::cout << "Please select an option: ";
+
+    int choice;
+    std::cin >> choice;
+
+    switch (choice)
+    {
+    case 0:
+      return; // Go back to the main menu
+    default:
+      std::cout << "Invalid choice. Please try again.\n";
+    }
+  }
 }
