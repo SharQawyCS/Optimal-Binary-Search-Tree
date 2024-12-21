@@ -1,7 +1,9 @@
 *
 !*.cpp
+!*.hpp
 !*.png
 !*.md
 !*.h
 !*.dot
 !Makefile
+!CLI/

@@ -249,7 +249,7 @@ namespace Utils
     // Windows
     std::system("cls");
 #else
-    // Unix-based (Linux, macOS, etc.)
+    // Unix-based (Linux, macOS)
     std::system("clear");
 #endif
   }
