@@ -212,11 +212,11 @@ namespace Utils
     // Getting number of nodes...
     // std::cin >> N;
     N = (int)readFloatInput("Enter number of nodes: ", false);
-    while (N < 2)
-    {
-      std::cout << "Invalid input; The number of nodes must be greater than 1.\n";
-      N = (int)readFloatInput("Enter number of nodes: ", false);
-    }
+    // while (N < 1)
+    // {
+    //   std::cout << "Invalid input; The number of nodes must be greater than 1.\n";
+    //   N = (int)readFloatInput("Enter number of nodes: ", false);
+    // }
     std::cin.ignore();
 
     // Getting data labels...
