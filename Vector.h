@@ -16,8 +16,8 @@ class Vector
   size_t len; // Current size of the vector (number of elements currently stored)
 
 public:
-  /**
-   * @brief Constructor to initialize a vector with a specified size.
+  /**a
+   * @brief Constructor to initialize  vector with a specified size.
    *
    * If an initial size is provided, the vector is created with that many elements, each default-initialized.
    * If no size is provided, an empty vector is created.
@@ -68,30 +68,11 @@ public:
    * @return A reference to the element at the specified index.
    * @throws std::out_of_range If the index is out of bounds.
    */
-  T &operator[](size_t index)
+  T &operator[](size_t index) const
   {
     if (index >= len)
     {
-      throw std::out_of_range("Index out of bounds");
-    }
-    return data[index];
-  }
-
-  /**
-   * @brief Access element at the specified index (const version).
-   *
-   * This function returns a const reference to the element at the specified index. If the index is out of bounds,
-   * an exception is thrown.
-   *
-   * @param index The index of the element to access.
-   * @return A const reference to the element at the specified index.
-   * @throws std::out_of_range If the index is out of bounds.
-   */
-  const T &operator[](size_t index) const
-  {
-    if (index >= len)
-    {
-      throw std::out_of_range("Index out of bounds");
+      throw std::out_of_range("Index out of bounds in Vector::operator[]");
     }
     return data[index];
   }
@@ -160,7 +141,20 @@ public:
     std::cout << std::endl;
   }
 
-  int findOne(T key) const
+  /**
+   * @brief Add a new element to the end of the vector.
+   *
+   * If the current capacity is not sufficient, the vector's capacity is doubled before adding the new element.
+   *
+   * @param value The value to be added to the vector.
+   */
+  void push_back(const T &value)
+  {
+    resize(len + 1);
+    data[len++] = value;
+  }
+
+  int findOne(const T &key) const
   {
     for (int i = 0; i < len; ++i)
     {
@@ -168,5 +162,29 @@ public:
         return i;
     }
     return -1;
+  }
+
+  /**
+   * @brief Remove an element by its index.
+   *
+   * This function removes the element at the specified index and shifts the subsequent elements
+   * to fill the gap. If the index is invalid, an exception is thrown.
+   *
+   * @param index The index of the element to remove.
+   * @throws std::out_of_range If the index is out of bounds.
+   */
+  void removeByIndex(int index)
+  {
+    if (index >= len)
+    {
+      throw std::out_of_range("Index out of bounds in Vector::removeByIndex");
+    }
+
+    for (int i = index; i < len - 1; ++i)
+    {
+      data[i] = data[i + 1];
+    }
+
+    --len;
   }
 };

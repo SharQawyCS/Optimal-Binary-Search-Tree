@@ -170,4 +170,14 @@ public:
     // Build and return the OBST as a Tree object
     return convertToTree(root, labels, n);
   }
+
+  void static addNode(std::string nodeLabel, float p, float q, Vector<std::string> &labels, Vector<float> &P, Vector<float> &Q)
+  {
+
+    labels.push_back(nodeLabel);
+    P.push_back(p);
+    Q.push_back(q);
+
+    Utils::sortInputs(labels, P);
+  }
 };

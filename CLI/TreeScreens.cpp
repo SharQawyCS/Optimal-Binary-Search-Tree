@@ -123,12 +123,10 @@ void CLI::DisplayEnteredData()
               << std::setw(15) << "Q" << "\n";
     std::cout << std::string(45, '-') << "\n"; // Table divider
 
-    // Assuming `labels`, `p`, and `q` are vectors or similar data structures
     for (size_t i = 0; i < std::max({labels.size(), p.size(), q.size()}); ++i)
     {
-      // Use safe access to handle uneven sizes
       std::string label = (i < labels.size()) ? labels[i] : "";
-      std::string probP = (i < p.size()) ? std::to_string(p[i]) : "";
+      std::string probP = (i + 1 < p.size()) ? std::to_string(p[i + 1]) : "";
       std::string probQ = (i < q.size()) ? std::to_string(q[i]) : "";
 
       // Print each row

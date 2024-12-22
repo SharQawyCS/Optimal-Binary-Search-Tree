@@ -30,7 +30,10 @@ private:
   void editNode();   // Todo
 
 public:
-  CLI() { useQ = false; };
+  CLI()
+  {
+    useQ = false;
+  }
 
   void show(); // Main function to display the menu
 };

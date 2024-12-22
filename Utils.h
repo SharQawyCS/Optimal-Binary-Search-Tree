@@ -207,7 +207,7 @@ namespace Utils
     }
   }
 
-  void getDataFromUser(Vector<std::string> &DataLables, int &N, Vector<float> &P, Vector<float> &Q)
+  bool getDataFromUser(Vector<std::string> &DataLables, int &N, Vector<float> &P, Vector<float> &Q)
   {
     // Getting number of nodes...
     // std::cin >> N;
@@ -259,6 +259,7 @@ namespace Utils
     P.display(false);
 
     // Check if user need to enter q or not
+    bool useQ = false;
     std::string choice;
     std::cout << "Do you want to enter probability of un-successful search (q)? ('y' to 'yes'): ";
     std::cin >> choice;
@@ -272,6 +273,7 @@ namespace Utils
     }
     else
     {
+      useQ = true;
       // Getting probability of un-successful search (q)...
       // Q = Vector<float>(N + 1);
       Q.resize(N + 1);
@@ -299,6 +301,8 @@ namespace Utils
     std::cout << "\nPress [Enter] to continue...";
     std::cin.ignore();
     std::cin.get();
+
+    return useQ; // Return if user entered q or not
   }
 
 } // END UTILS
