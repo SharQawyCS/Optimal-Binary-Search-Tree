@@ -68,40 +68,5 @@ int main()
 
   Settings::setSettings(SETTINGS_FILE);
 
-  // ? Test case 1
-  // int n = 30;
-  // Vector<float> p = {
-  //     0.0, 0.10, 0.15, 0.10, 0.05, 0.20, 0.15, 0.05,
-  //     0.10, 0.25, 0.20, 0.05, 0.30, 0.10, 0.15, 0.05,
-  //     0.25, 0.10, 0.20, 0.15, 0.30, 0.05, 0.20, 0.10,
-  //     0.25, 0.15, 0.10, 0.05, 0.15, 0.10, 0.20};
-  // Vector<float> q = {
-  //     0.05, 0.10, 0.15, 0.05, 0.10, 0.05, 0.20, 0.15,
-  //     0.05, 0.10, 0.05, 0.15, 0.10, 0.20, 0.05, 0.15,
-  //     0.05, 0.10, 0.15, 0.05, 0.30, 0.10, 0.20, 0.05,
-  //     0.10, 0.15, 0.20, 0.10, 0.05, 0.15, 0.10};
-  // Vector<std::string> labels = {
-  //     "a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
-  //     "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
-  //     "u", "v", "w", "x", "y", "z", "aa", "ab", "ac", "ad"};
-
-  // ? Test case 2
-  // int n = 4;
-  // Vector<float> p = {0, 4, 2, 6, 3};
-  // Vector<float> q = {0, 0, 0, 0, 0};
-  // Vector<std::string> labels = {"10", "20", "30", "40"};
-
-  // ? Test case 3
-  // int n = 3;
-  // Vector<float> p = {0, 34, 8, 50};
-  // Vector<float> q = {0, 0, 0, 0};
-  // Vector<std::string> labels = {"10", "12", "20"};
-
-  // ? Test case 4, from this video: https://www.youtube.com/watch?v=67Y_Ww_-Jaw
-  // int n = 4;
-  // Vector<float> p = {0, 3, 3, 1, 1};
-  // Vector<float> q = {2, 3, 1, 1, 1};
-  // Vector<std::string> labels = {"20", "40", "60", "80"};
-
   return 0;
 }
