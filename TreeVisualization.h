@@ -55,7 +55,31 @@ private:
     }
 
     dotFile << "digraph OBST {\n"; // Start of DOT syntax
-    dotFile << "  node [shape=circle];\n";
+
+    // Label for the graph
+    dotFile << "  label=\"" << "My Awesome Tree 🌟" << "\";\n";
+    dotFile << "  labelloc=\"" << "t" << "\";\n";
+    dotFile << "  fontsize=" << 18 << ";\n";
+
+    // Node properties
+    std::string nodeShape = "circle";
+    std::string nodeStyle = "filled";
+    std::string nodeColor = "lightblue";
+    std::string fontColor = "black";
+    int fontSize = 14;
+
+    dotFile << "node [";
+    dotFile << "shape=" << "circle" << ", ";
+    dotFile << "style=" << "filled" << ", ";
+    dotFile << "color=" << "lightblue" << ", ";
+    dotFile << "fontcolor=" << "black" << ", ";
+    dotFile << "fontsize=" << 14 << ";\n";
+    dotFile << "];\n";
+
+    // Edge properties
+    std::string edgeColor = "gray";
+
+    dotFile << "edge [color=" << edgeColor << "];\n";
 
     int nullCount = 0;
     if (root)

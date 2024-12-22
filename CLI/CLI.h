@@ -5,10 +5,12 @@
 #include "CLIHelper.h"
 #include "../OBST.h" // Your OBST class
 #include "../TreeVisualization.h"
+#include "../Settings.h"
 
 class CLI
 {
 private:
+  Settings settings;
   Tree tree;
   int n;
   Vector<float> p;

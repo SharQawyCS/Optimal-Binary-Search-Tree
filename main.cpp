@@ -34,6 +34,19 @@
 #include "Tree.h"              // Handles tree structure and visualization.
 #include "TreeVisualization.h" // Generates DOT files for tree visualization.
 #include "CLI/CLI.h"           // Command-line interface for user interaction.
+#include "Settings.h"          // Handles reading settings from a file.
+
+// Default settings
+std::string Settings::DOT_FILE = "obst.dot";
+std::string Settings::OUTPUT_IMAGE = "obst.png";
+std::string Settings::GRAPH_LABEL = "✨ The Optimal Binary Search Tree ✨";
+int Settings::LABEL_FONTSIZE = 18;
+std::string Settings::NODE_SHAPE = "circle";
+std::string Settings::NODE_STYLE = "filled";
+std::string Settings::NODE_COLOR = "lightblue";
+std::string Settings::NODE_FONTCOLOR = "black";
+int Settings::NODE_FONTSIZE = 14;
+std::string Settings::EDGE_COLOR = "gray";
 
 /**
  * @brief Main function for running and testing the Optimal Binary Search Tree (OBST) application.
@@ -45,6 +58,9 @@
  */
 int main()
 {
+  std::string SETTINGS_FILE = "settings.txt";
+  Settings::getSettings(SETTINGS_FILE);
+
   CLI cli;
   cli.show();
 
