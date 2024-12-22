@@ -9,6 +9,12 @@
 
 void CLI::displayTree() const
 {
+  if (tree.isEmpty())
+  {
+    CLIHELPER::popAlert("The tree is empty! Please create a tree first.");
+    return;
+  }
+
   while (true)
   {
     Utils::clearTerminal();
@@ -34,12 +40,24 @@ void CLI::visualizeTree()
 {
   Utils::clearTerminal();
 
+  if (tree.isEmpty())
+  {
+    CLIHELPER::popAlert("The tree is empty! Please create a tree first.");
+    return;
+  }
+
   std::cout << "Visualizing the tree...\n";
   TreeVisualization::visualizeTree(tree, DOT_FILE, OUTPUT_IMAGE, true);
 }
 
 void CLI::analyzeTree()
 {
+  if (tree.isEmpty())
+  {
+    CLIHELPER::popAlert("The tree is empty! Please create a tree first.");
+    return;
+  }
+
   while (true)
   {
     Utils::clearTerminal();
@@ -61,6 +79,12 @@ void CLI::analyzeTree()
 
 void CLI::DisplayDerivedTables()
 {
+  if (tree.isEmpty())
+  {
+    CLIHELPER::popAlert("The have not enter data yet! Please create data first.");
+    return;
+  }
+
   while (true)
   {
     Utils::clearTerminal();
@@ -82,6 +106,12 @@ void CLI::DisplayDerivedTables()
 
 void CLI::DisplayEnteredData()
 {
+  if (tree.isEmpty())
+  {
+    CLIHELPER::popAlert("The have not enter data yet! Please create data first.");
+    return;
+  }
+
   while (true)
   {
     Utils::clearTerminal();

@@ -145,4 +145,9 @@ public:
     int totalNodes = countNodes(root);
     return (totalNodes == 0) ? 0.0 : static_cast<double>(sumOfDepths(root, 0)) / totalNodes;
   }
+
+  bool isEmpty() const
+  {
+    return root == nullptr;
+  }
 };

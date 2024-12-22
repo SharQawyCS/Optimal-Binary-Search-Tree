@@ -23,4 +23,14 @@ namespace CLIHELPER
     return choice;
   };
 
+  void popAlert(std::string msg)
+  {
+    Utils::clearTerminal();
+    std::cout << msg << "\n"
+              << std::endl
+              << "Press [Enter] to continue...";
+    std::cin.ignore();
+    std::cin.get();
+  }
+
 }

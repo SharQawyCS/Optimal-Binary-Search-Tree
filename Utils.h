@@ -296,7 +296,7 @@ namespace Utils
     std::cout << "Probabilities (q): ";
     Q.display();
 
-    std::cout << "\nPress any key to continue...";
+    std::cout << "\nPress [Enter] to continue...";
     std::cin.ignore();
     std::cin.get();
   }

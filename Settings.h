@@ -66,7 +66,7 @@ public:
       std::cerr << "Could not open settings file: " << filename << std::endl;
       std::cout << "Using default settings..." << std::endl;
 
-      std::cout << "press any key to continue" << std::endl;
+      std::cout << "Press [Enter] to continue...";
       std::cin.get();
 
       return;

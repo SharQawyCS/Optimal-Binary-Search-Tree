@@ -56,8 +56,18 @@ void CLI::addNode()
 
 void CLI::deleteNode()
 {
+  if (tree.isEmpty())
+  {
+    CLIHELPER::popAlert("The tree is empty! Please create a tree first.");
+    return;
+  }
 }
 
 void CLI::editNode()
 {
+  if (tree.isEmpty())
+  {
+    CLIHELPER::popAlert("The tree is empty! Please create a tree first.");
+    return;
+  }
 }
