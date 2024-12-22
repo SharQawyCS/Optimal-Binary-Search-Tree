@@ -5,8 +5,17 @@ digraph OBST {
 node [shape=circle, style=filled, color=lightblue, fontcolor=black, fontsize=14;
 ];
 edge [color=gray];
+  "3" -> "2";
+  "2" -> "1";
   null0 [shape=point];
   "1" -> null0;
   null1 [shape=point];
   "1" -> null1;
+  null2 [shape=point];
+  "2" -> null2;
+  "3" -> "4";
+  null3 [shape=point];
+  "4" -> null3;
+  null4 [shape=point];
+  "4" -> null4;
 }
