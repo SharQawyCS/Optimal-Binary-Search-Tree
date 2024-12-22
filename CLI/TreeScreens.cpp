@@ -108,30 +108,44 @@ void CLI::DisplayEnteredData()
 {
   if (tree.isEmpty())
   {
-    CLIHELPER::popAlert("The have not enter data yet! Please create data first.");
+    CLIHELPER::popAlert("You have not entered data yet! Please create data first.");
     return;
   }
 
   while (true)
   {
     Utils::clearTerminal();
-    std::cout << "\n===== Display Entered Data =====\n";
+    std::cout << "\n===== Display Entered Data =====\n\n";
 
-    std::cout << "Data labels      :  ";
-    labels.display();
-    std::cout << "Probabilities (p):  ";
-    p.display(false);
-    std::cout << "Probabilities (q): ";
-    q.display();
+    // Display header
+    std::cout << std::left << std::setw(15) << "Label"
+              << std::setw(15) << "P"
+              << std::setw(15) << "Q" << "\n";
+    std::cout << std::string(45, '-') << "\n"; // Table divider
 
-    int choice = CLIHELPER::getChoice(0, "\nPress [0] to back to main menu\n");
+    // Assuming `labels`, `p`, and `q` are vectors or similar data structures
+    for (size_t i = 0; i < std::max({labels.size(), p.size(), q.size()}); ++i)
+    {
+      // Use safe access to handle uneven sizes
+      std::string label = (i < labels.size()) ? labels[i] : "";
+      std::string probP = (i < p.size()) ? std::to_string(p[i]) : "";
+      std::string probQ = (i < q.size()) ? std::to_string(q[i]) : "";
+
+      // Print each row
+      std::cout << std::left << std::setw(15) << label
+                << std::setw(15) << probP
+                << std::setw(15) << probQ << "\n";
+    }
+
+    // Add a footer for user choice
+    int choice = CLIHELPER::getChoice(0, "\nPress [0] to return to the main menu\n");
 
     switch (choice)
     {
     case 0:
       return; // Go back to the main menu
     default:
-      std::cout << "Invalid choice. (from default of while)\n";
+      std::cout << "Invalid choice.\n"; // Default invalid choice handler
     }
   }
 }

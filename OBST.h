@@ -161,11 +161,6 @@ public:
     // Compute the tables for all subtrees
     computeOBST(e, w, root, n, p, q);
 
-    // make loc variables equal to the computed tables
-    // locE = e;
-    // locW = w;
-    // locRoot = root;
-
     // Display the tables if u want
     if (_displayTables)
     {
