@@ -14,8 +14,10 @@ void CLI::editTree()
     std::cout << "\n===== Edit Tree =====\n";
     std::cout << "1. Create a Tree from Scratch\n";
     std::cout << "2. Add a New Node\n";
+
     // std::cout << "3. Delete a Node\n";
     // std::cout << "4. Edit an Existing Node\n";
+
     std::cout << "0. Back to Main Menu\n";
 
     int choice = CLIHELPER::getChoice(2, "USE_DEFAULT");
@@ -27,13 +29,15 @@ void CLI::editTree()
       break;
     case 2:
       addNode();
-    //   break;
-    // case 3:
-    //   deleteNode();
-    //   break;
-    // case 4:
-    //   editNode();
-    //   break;
+      break;
+
+      // case 3:
+      //   deleteNode();
+      //   break;
+      // case 4:
+      //   editNode();
+      //   break;
+
     case 0:
       return; // Go back to the main menu
     default:
@@ -45,6 +49,7 @@ void CLI::editTree()
 void CLI::createTreeFromScratch()
 {
   Utils::clearTerminal();
+  std::cout << "\n===== Create Tree from Scratch =====\n";
 
   useQ = Utils::getDataFromUser(labels, n, p, q);
   tree.assign(OBST::generateTheOBST(p, q, labels, false));
