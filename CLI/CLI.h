@@ -6,6 +6,7 @@
 class CLI
 {
 private:
+  bool useQ;
   Settings settings;
   Tree tree;
   int n;
@@ -29,7 +30,7 @@ private:
   void editNode();   // Todo
 
 public:
-  CLI() {};
+  CLI() { useQ = false; };
 
   void show(); // Main function to display the menu
 };
