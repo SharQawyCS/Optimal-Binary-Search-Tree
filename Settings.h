@@ -130,28 +130,28 @@ public:
     file.close();
   }
 
-  // Function to write settings to a file
+  // Function to set and save settings to a file
   static void setSettings(const std::string &filename)
   {
-    std::ofstream file(filename);
-    if (!file.is_open())
+    std::ofstream settingsFile(filename);
+
+    if (settingsFile.is_open())
     {
-      std::cerr << "Could not open settings file for writing: " << filename << std::endl;
-      return;
+      settingsFile << "DOT_FILE=" << DOT_FILE << "\n";
+      settingsFile << "OUTPUT_IMAGE=" << OUTPUT_IMAGE << "\n";
+      settingsFile << "GRAPH_LABEL=" << GRAPH_LABEL << "\n";
+      settingsFile << "LABEL_FONTSIZE=" << LABEL_FONTSIZE << "\n";
+      settingsFile << "NODE_SHAPE=" << NODE_SHAPE << "\n";
+      settingsFile << "NODE_STYLE=" << NODE_STYLE << "\n";
+      settingsFile << "NODE_COLOR=" << NODE_COLOR << "\n";
+      settingsFile << "NODE_FONTCOLOR=" << NODE_FONTCOLOR << "\n";
+      settingsFile << "NODE_FONTSIZE=" << NODE_FONTSIZE << "\n";
+      settingsFile << "EDGE_COLOR=" << EDGE_COLOR << "\n";
+      settingsFile.close();
     }
-
-    file << "DOT_FILE=" << DOT_FILE << "\n";
-    file << "OUTPUT_IMAGE=" << OUTPUT_IMAGE << "\n";
-    file << "GRAPH_LABEL=" << GRAPH_LABEL << "\n";
-    file << "LABEL_FONTSIZE=" << LABEL_FONTSIZE << "\n";
-    file << "NODE_SHAPE=" << NODE_SHAPE << "\n";
-    file << "NODE_STYLE=" << NODE_STYLE << "\n";
-    file << "NODE_COLOR=" << NODE_COLOR << "\n";
-    file << "NODE_FONTCOLOR=" << NODE_FONTCOLOR << "\n";
-    file << "NODE_FONTSIZE=" << NODE_FONTSIZE << "\n";
-    file << "EDGE_COLOR=" << EDGE_COLOR << "\n";
-
-    file.close();
-    std::cout << "Settings saved to " << filename << std::endl;
+    else
+    {
+      std::cerr << "Error: Unable to open settings file for writing.\n";
+    }
   }
 };

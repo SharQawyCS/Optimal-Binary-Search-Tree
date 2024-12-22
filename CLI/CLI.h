@@ -16,8 +16,8 @@ private:
   Vector<float> p;
   Vector<float> q;
   Vector<std::string> labels;
-  std::string DOT_FILE = "tree.dot";
-  std::string OUTPUT_IMAGE = "tree.png";
+  std::string DOT_FILE = Settings::getDotFile();
+  std::string OUTPUT_IMAGE = Settings::getOutputImage();
 
   void editTree();             // Option 1 in main menu
   void displayTree() const;    // Option 2 in main menu

@@ -1,0 +1,24 @@
+digraph OBST {
+  label="✨ The Optimal Binary Search Tree ✨";
+  labelloc="t";
+  fontsize=18;
+node [shape=circle, style=filled, color=lightblue, fontcolor=black, fontsize=14;
+];
+edge [color=gray];
+  "4" -> "2";
+  "2" -> "1";
+  null0 [shape=point];
+  "1" -> null0;
+  null1 [shape=point];
+  "1" -> null1;
+  "2" -> "3";
+  null2 [shape=point];
+  "3" -> null2;
+  null3 [shape=point];
+  "3" -> null3;
+  "4" -> "5";
+  null4 [shape=point];
+  "5" -> null4;
+  null5 [shape=point];
+  "5" -> null5;
+}

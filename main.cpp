@@ -37,15 +37,15 @@
 #include "Settings.h"          // Handles reading settings from a file.
 
 // Default settings
-std::string Settings::DOT_FILE = "obst.dot";
-std::string Settings::OUTPUT_IMAGE = "obst.png";
-std::string Settings::GRAPH_LABEL = "✨ The Optimal Binary Search Tree ✨";
-int Settings::LABEL_FONTSIZE = 18;
+std::string Settings::DOT_FILE = "df_obst.dot";
+std::string Settings::OUTPUT_IMAGE = "df_obst.png";
+std::string Settings::GRAPH_LABEL = "✨ df The Optimal Binary Search Tree ✨";
+int Settings::LABEL_FONTSIZE = 16;
 std::string Settings::NODE_SHAPE = "circle";
 std::string Settings::NODE_STYLE = "filled";
 std::string Settings::NODE_COLOR = "lightblue";
 std::string Settings::NODE_FONTCOLOR = "black";
-int Settings::NODE_FONTSIZE = 14;
+int Settings::NODE_FONTSIZE = 12;
 std::string Settings::EDGE_COLOR = "gray";
 
 /**
@@ -58,11 +58,15 @@ std::string Settings::EDGE_COLOR = "gray";
  */
 int main()
 {
+  Utils::clearTerminal();
+
   std::string SETTINGS_FILE = "settings.txt";
   Settings::getSettings(SETTINGS_FILE);
 
   CLI cli;
   cli.show();
+
+  Settings::setSettings(SETTINGS_FILE);
 
   // ? Test case 1
   // int n = 30;

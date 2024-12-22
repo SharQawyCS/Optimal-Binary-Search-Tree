@@ -7,6 +7,7 @@
 #include <string>
 #include "TreeNode.h"
 #include "Tree.h"
+#include "Settings.h"
 
 class TreeVisualization
 {
@@ -57,27 +58,21 @@ private:
     dotFile << "digraph OBST {\n"; // Start of DOT syntax
 
     // Label for the graph
-    dotFile << "  label=\"" << "My Awesome Tree 🌟" << "\";\n";
+    dotFile << "  label=\"" << Settings::getGraphLabel() << "\";\n";
     dotFile << "  labelloc=\"" << "t" << "\";\n";
-    dotFile << "  fontsize=" << 18 << ";\n";
+    dotFile << "  fontsize=" << Settings::getGraphFontSize() << ";\n";
 
     // Node properties
-    std::string nodeShape = "circle";
-    std::string nodeStyle = "filled";
-    std::string nodeColor = "lightblue";
-    std::string fontColor = "black";
-    int fontSize = 14;
-
     dotFile << "node [";
-    dotFile << "shape=" << "circle" << ", ";
-    dotFile << "style=" << "filled" << ", ";
-    dotFile << "color=" << "lightblue" << ", ";
-    dotFile << "fontcolor=" << "black" << ", ";
-    dotFile << "fontsize=" << 14 << ";\n";
+    dotFile << "shape=" << Settings::getNodeShape() << ", ";
+    dotFile << "style=" << Settings::getNodeStyle() << ", ";
+    dotFile << "color=" << Settings::getNodeColor() << ", ";
+    dotFile << "fontcolor=" << Settings::getNodeFontColor() << ", ";
+    dotFile << "fontsize=" << Settings::getNodeFontSize() << ";\n";
     dotFile << "];\n";
 
     // Edge properties
-    std::string edgeColor = "gray";
+    std::string edgeColor = Settings::getEdgeColor();
 
     dotFile << "edge [color=" << edgeColor << "];\n";
 
