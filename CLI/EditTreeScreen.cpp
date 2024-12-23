@@ -14,13 +14,13 @@ void CLI::editTree()
     std::cout << "\n===== Edit Tree =====\n";
     std::cout << "1. Create a Tree from Scratch\n";
     std::cout << "2. Add a New Node\n";
+    std::cout << "3. Delete a Node\n";
 
-    // std::cout << "3. Delete a Node\n";
     // std::cout << "4. Edit an Existing Node\n";
 
     std::cout << "0. Back to Main Menu\n";
 
-    int choice = CLIHELPER::getChoice(2, "USE_DEFAULT");
+    int choice = CLIHELPER::getChoice(3, "USE_DEFAULT");
 
     switch (choice)
     {
@@ -30,10 +30,9 @@ void CLI::editTree()
     case 2:
       addNode();
       break;
-
-      // case 3:
-      //   deleteNode();
-      //   break;
+    case 3:
+      deleteNode();
+      break;
       // case 4:
       //   editNode();
       //   break;
@@ -104,11 +103,57 @@ void CLI::addNode()
 
 void CLI::deleteNode()
 {
+  Utils::clearTerminal();
+  std::cout << "\n===== Delete Node =====\n";
+
+  if (useQ)
+  {
+    CLIHELPER::popAlert("You cannot edit a tree with un-successful search probabilities (q).");
+    return;
+  }
+
   if (tree.isEmpty())
   {
     CLIHELPER::popAlert("The tree is empty! Please create a tree first.");
     return;
   }
+
+  std::cout << "\n===== Entered Data =====\n\n";
+
+  // Display header
+  std::cout << std::left << std::setw(15) << "Label"
+            << std::setw(15) << "P"
+            << std::setw(15) << "Q" << "\n";
+  std::cout << std::string(45, '-') << "\n"; // Table divider
+
+  for (size_t i = 0; i < std::max({labels.size(), p.size(), q.size()}); ++i)
+  {
+    std::string label = (i < labels.size()) ? labels[i] : "";
+    std::string probP = (i + 1 < p.size()) ? std::to_string(p[i + 1]) : "";
+    std::string probQ = (i < q.size()) ? std::to_string(q[i]) : "";
+
+    // Print each row
+    std::cout << std::left << std::setw(15) << label
+              << std::setw(15) << probP
+              << std::setw(15) << probQ << "\n";
+  }
+
+  std::string nodeToDelete = Utils::readLabel(labels, "\nEnter the label of the node to delete: ", true);
+
+  int index = labels.findOne(nodeToDelete);
+  if (index == -1)
+  {
+    CLIHELPER::popAlert("The node does not exist in the tree!");
+    return;
+  }
+
+  labels.removeByIndex(index);
+  p.removeByIndex(index + 1);
+  q.removeByIndex(index + 1);
+
+  tree.assign(OBST::generateTheOBST(p, q, labels, false));
+
+  CLIHELPER::popAlert("Node deleted successfully!");
 }
 
 void CLI::editNode()

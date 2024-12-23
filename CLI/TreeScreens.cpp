@@ -121,7 +121,7 @@ void CLI::DisplayEnteredData()
     std::cout << std::left << std::setw(15) << "Label"
               << std::setw(15) << "P"
               << std::setw(15) << "Q" << "\n";
-    std::cout << std::string(45, '-') << "\n"; // Table divider
+    std::cout << std::string(45, '-') << "\n"; // Table sep
 
     for (size_t i = 0; i < std::max({labels.size(), p.size(), q.size()}); ++i)
     {

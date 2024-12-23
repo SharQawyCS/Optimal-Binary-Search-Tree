@@ -77,7 +77,7 @@ namespace Utils
 #endif
   }
 
-  std::string readLabel(const Vector<std::string> &vec, std::string msg = "Enter a string: ")
+  std::string readLabel(const Vector<std::string> &vec, std::string msg = "Enter a string: ", bool isDeleted = false)
   {
     std::string input;
     bool valid = false; // Valid if not found (if return -1)
@@ -87,7 +87,7 @@ namespace Utils
       std::cin >> input;
       if (std::cin.good())
       {
-        if (vec.findOne(input) == -1)
+        if (vec.findOne(input) == -1 || isDeleted)
         {
           valid = true; // everything went well, we'll get out of the loop and return the value
         }
