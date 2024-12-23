@@ -25,9 +25,8 @@ private:
 
   // Submenu for editing the tree
   void createTreeFromScratch();
-  void addNode();    // Todo
-  void deleteNode(); // Todo
-  void editNode();   // Todo
+  void addNode();
+  void deleteNode();
 
 public:
   CLI()
