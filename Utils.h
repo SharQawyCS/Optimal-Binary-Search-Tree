@@ -77,7 +77,7 @@ namespace Utils
 #endif
   }
 
-  std::string readLabel(const Vector<std::string> &vec, std::string msg = "Enter a string: ")
+  std::string readLabel(const Vector<std::string> &vec, std::string msg = "Enter a string: ", bool isDeleted = false)
   {
     std::string input;
     bool valid = false; // Valid if not found (if return -1)
@@ -87,7 +87,7 @@ namespace Utils
       std::cin >> input;
       if (std::cin.good())
       {
-        if (vec.findOne(input) == -1)
+        if (vec.findOne(input) == -1 || isDeleted)
         {
           valid = true; // everything went well, we'll get out of the loop and return the value
         }
@@ -278,14 +278,14 @@ namespace Utils
       // Q = Vector<float>(N + 1);
       Q.resize(N + 1);
       std::cout << "\nEntering probability of un-successful search....\n";
-      std::string msg = "Enter probability of inserting a node less than " + DataLables[0] + ": ";
+      std::string msg = "Enter probability of searching for a node less than " + DataLables[0] + ": ";
       Q[0] = readFloatInput(msg, true);
       for (size_t i = 1; i < N; i++)
       {
-        std::string msg = "Enter probability of inserting a node between " + DataLables[i - 1] + " and " + DataLables[i] + ": ";
+        std::string msg = "Enter probability of searching for a node between " + DataLables[i - 1] + " and " + DataLables[i] + ": ";
         Q[i] = readFloatInput(msg, true);
       }
-      msg = "Enter probability of inserting a node greater than " + DataLables[N - 1] + ": ";
+      msg = "Enter probability of searching for a node greater than " + DataLables[N - 1] + ": ";
       Q[N] = readFloatInput(msg, true);
     }
 
