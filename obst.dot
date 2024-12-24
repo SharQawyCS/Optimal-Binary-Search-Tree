@@ -2,20 +2,17 @@ digraph OBST {
   label="✨ The Optimal Binary Search Tree ✨";
   labelloc="t";
   fontsize=18;
-node [shape=circle, style=filled, color=lightblue, fontcolor=black, fontsize=14;
+node [shape=circle, style=solid, color="#FF3671", fontcolor=black, fontsize=14;
 ];
-edge [color=gray];
-  "lot" -> "a";
+edge [color="#3B4455"];
+  "Love" -> "BSTs";
   null0 [shape=point];
-  "a" -> null0;
+  "BSTs" -> null0;
+  "BSTs" -> "I";
   null1 [shape=point];
-  "a" -> null1;
-  "lot" -> "m";
-  "m" -> "love";
+  "I" -> null1;
   null2 [shape=point];
-  "love" -> null2;
+  "I" -> null2;
   null3 [shape=point];
-  "love" -> null3;
-  null4 [shape=point];
-  "m" -> null4;
+  "Love" -> null3;
 }

@@ -207,7 +207,7 @@ namespace Utils
     }
   }
 
-  bool getDataFromUser(Vector<std::string> &DataLables, int &N, Vector<float> &P, Vector<float> &Q)
+  bool getDataFromUser(Vector<std::string> &DataLables, int &N, Vector<float> &P, Vector<float> &Q, bool fromScratch = false)
   {
     // Getting number of nodes...
     // std::cin >> N;
@@ -231,7 +231,7 @@ namespace Utils
       // std::cin >> in;
 
       // std::cin.ignore();
-      DataLables[i] = readLabel(DataLables, msg);
+      DataLables[i] = readLabel(DataLables, msg, fromScratch);
     }
 
     clearTerminal();
