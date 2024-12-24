@@ -1,21 +1,3 @@
-**The OBST Project**
-
-| El-Sharqawy Wael El-Sharqawy | 23P0360 |
-| --- | --- |
-| Nagy Ahmed | **23P0365** |
-| Ahmed Mostafa | **23P0375** |
-| Abdelrhman Mohammed Mahmoud | **23P0370** |
-| Youssef Maged Morees | **2301081** |
-
-Submitted to:
-
-- **Dr. Ashraf Abdel-Raouf**
-- **Eng. Ahmed Salama**
-- **Eng. Nada Amr**
-
-ENG – ASU – CAIE
-
-Dec 22, 2024
 
 ## Overview
 
@@ -25,16 +7,16 @@ The Optimal Binary Search Tree (OBST) project is a C++ application designed for 
 
 ###
 
-Main Menu
+### Main Menu
 
 The CLI provides a user-friendly menu to navigate through the features:
 
 
-1. Edit Tree
+### 1\. Edit Tree
 
 Allows users to create or modify the OBST structure.
 
-### Display Tree
+### 2\. Display Tree
 
 Prints the constructed **OBST** in a **textual** format, showing parent-child relationships for each node.
 
@@ -116,6 +98,6 @@ Required for generating graphical representations of the OBST. The **.dot** file
 - Dynamic memory management
 - Exception handling
 
-## Accessing the Source Code
+## License
 
-The complete source code for the **Optimal Binary Search Tree CLI** project, including all dependencies, documentation, and the **settings.txt** file for customization, is available on **GitHub**. To access the repository, follow this link: [**Optimal-Binary-Search-Tree**](https://github.com/SharQawyCS/Optimal-Binary-Search-Tree)
+MIT License file are included in the source code, explore it for more details. **2024 Ain Shams University, Cairo, Egypt, All rights reserved.**
