@@ -43,7 +43,14 @@ void CLI::createTreeFromScratch()
   Utils::clearTerminal();
   std::cout << "\n===== Create Tree from Scratch =====\n";
 
-  useQ = Utils::getDataFromUser(labels, n, p, q, true);
+  bool doesHaveATree = !tree.isEmpty();
+  {
+    labels.resize(0);
+    p.resize(1);
+    q.resize(1);
+  }
+
+  useQ = Utils::getDataFromUser(labels, n, p, q);
   tree.assign(OBST::generateTheOBST(p, q, labels, false));
 }
 

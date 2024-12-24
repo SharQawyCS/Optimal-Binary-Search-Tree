@@ -77,7 +77,7 @@ namespace Utils
 #endif
   }
 
-  std::string readLabel(const Vector<std::string> &vec, std::string msg = "Enter a string: ", bool isDeleted = false)
+  std::string readLabel(const Vector<std::string> &vec, std::string msg = "Enter a string: ")
   {
     std::string input;
     bool valid = false; // Valid if not found (if return -1)
@@ -87,7 +87,7 @@ namespace Utils
       std::cin >> input;
       if (std::cin.good())
       {
-        if (vec.findOne(input) == -1 || isDeleted)
+        if (vec.findOne(input) == -1)
         {
           valid = true; // everything went well, we'll get out of the loop and return the value
         }
@@ -207,7 +207,7 @@ namespace Utils
     }
   }
 
-  bool getDataFromUser(Vector<std::string> &DataLables, int &N, Vector<float> &P, Vector<float> &Q, bool fromScratch = false)
+  bool getDataFromUser(Vector<std::string> &DataLables, int &N, Vector<float> &P, Vector<float> &Q)
   {
     // Getting number of nodes...
     // std::cin >> N;
@@ -231,7 +231,7 @@ namespace Utils
       // std::cin >> in;
 
       // std::cin.ignore();
-      DataLables[i] = readLabel(DataLables, msg, fromScratch);
+      DataLables[i] = readLabel(DataLables, msg);
     }
 
     clearTerminal();
